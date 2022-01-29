@@ -14,3 +14,21 @@ texture = ExtResource( "1_vuotm" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( "CircleShape2D_hlw7v" )
+
+[node name="GroundCast" type="Node2D" parent="."]
+
+[node name="GroundCastLeft" type="RayCast2D" parent="GroundCast"]
+position = Vector2(-4, 0)
+target_position = Vector2(0, 9)
+
+[node name="GroundCastRight" type="RayCast2D" parent="GroundCast"]
+position = Vector2(4, 0)
+target_position = Vector2(0, 9)
+
+[node name="GroundCastCenter" type="RayCast2D" parent="GroundCast"]
+target_position = Vector2(0, 10)
+
+[node name="Shoulder" type="Node2D" parent="."]
+
+[node name="Arm" type="Node2D" parent="Shoulder"]
+position = Vector2(7, 0)
