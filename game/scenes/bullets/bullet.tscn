@@ -10,6 +10,7 @@ radius = 3.16228
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( "1_kgxe7" )
+start_velocity = 100.0
 destruction_polygon_path = NodePath("DestructionMask")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,5 +21,5 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource( "2_mym2b" )
 
 [node name="DestructionMask" type="Polygon2D" parent="."]
-position = Vector2(6, 0)
-polygon = PackedVector2Array(-3, 3, -3, 7, 0, 4, 2, 6, 3, 3, 6, 2, 4, 0, 6, -2, 3, -3, 3, -6, 0, -4, -3, -6, -3, -3, -6, -2, -4, 0, -6, 3)
+visible = false
+polygon = PackedVector2Array(33, 0, 0, -2, -3, 0, 0, 2)

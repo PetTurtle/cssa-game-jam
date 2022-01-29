@@ -2,16 +2,16 @@
 
 importer="texture"
 type="StreamTexture2D"
-uid="uid://cg42fdreb8fbr"
-path="res://.godot/imported/player.png-b9a7b4b971b271eb58001e693ad5fc6a.stex"
+uid="uid://bywya3uikueda"
+path="res://.godot/imported/player4.png-496edb69022cd26a728dcbda5b4da7fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/entities/player.png"
-dest_files=["res://.godot/imported/player.png-b9a7b4b971b271eb58001e693ad5fc6a.stex"]
+source_file="res://scenes/entities/player/assets/player4.png"
+dest_files=["res://.godot/imported/player4.png-496edb69022cd26a728dcbda5b4da7fd.stex"]
 
 [params]
 

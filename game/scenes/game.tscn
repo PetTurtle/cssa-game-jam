@@ -1,9 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://csoviotd8nvwb"]
+[gd_scene load_steps=13 format=3 uid="uid://doeuxfpxre76s"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
 [ext_resource type="Script" path="res://components/Destructible.gd" id="2_d1y56"]
-[ext_resource type="PackedScene" uid="uid://ct5w82ip6wi2v" path="res://scenes/entities/Player.tscn" id="3_dx44n"]
+[ext_resource type="Script" path="res://scripts/planet_core.gd" id="2_xnqvc"]
+[ext_resource type="PackedScene" uid="uid://c0r654ui6a0i6" path="res://scenes/entities/player/Player.tscn" id="3_dx44n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_af4d5"]
+radius = 36.0555
+
+[sub_resource type="Gradient" id="Gradient_o20yb"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.925408, 0.0226566, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_arvc7"]
+gradient = SubResource( "Gradient_o20yb" )
+
+[sub_resource type="Curve" id="Curve_t5ct8"]
+min_value = 0.5
+max_value = 4.0
+_data = [Vector2(0, 3.84091), 0.0, 0.0, 0, 0, Vector2(1, 0.5), -10.5412, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_iug03"]
+curve = SubResource( "Curve_t5ct8" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_03lwi"]
+emission_shape = 1
+emission_sphere_radius = 45.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.05
+orbit_velocity_max = 0.1
+scale_curve = SubResource( "CurveTexture_iug03" )
+color_ramp = SubResource( "GradientTexture1D_arvc7" )
+collision_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdkaw"]
 
@@ -17,6 +46,25 @@ position = Vector2(128, 128)
 __meta__ = {
 "_gizmo_extents_": 14.4
 }
+
+[node name="PlanetCore" type="Area2D" parent="."]
+position = Vector2(128, 128)
+script = ExtResource( "2_xnqvc" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetCore"]
+shape = SubResource( "CircleShape2D_af4d5" )
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PlanetCore"]
+amount = 500
+lifetime = 5.0
+preprocess = 5.0
+trail_enabled = true
+trail_length_secs = 0.5
+process_material = SubResource( "ParticlesMaterial_03lwi" )
+
+[node name="ExplodeShape" type="Polygon2D" parent="PlanetCore"]
+visible = false
+polygon = PackedVector2Array(-107, -4, -38, 6, -73, 22, -47, 22, -63, 45, -32, 40, -63, 94, -5, 53, 39, 97, 27, 27, 92, 51, 71.0842, 30.8589, 101, 16, 52.2818, 12.7529, 38, -1, 74, -33, 77, -50, 48, -30, 31, -33, 28.4305, -56.7859, 30, -76, 34, -98, 3, -45, -13, -79, -29.1951, -68.1252, -52, -94, -49, -68, -65, -60, -34, -31, -62, -37, -93, -53, -60, -17, -77, -9)
 
 [node name="Planet" type="StaticBody2D" parent="."]
 physics_material_override = SubResource( "PhysicsMaterial_gdkaw" )

@@ -19,10 +19,20 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://components/Destructible.gd"
 }, {
+"base": "RigidDynamicBody2D",
+"class": &"Enemy",
+"language": &"GDScript",
+"path": "res://scenes/enemies/enemy.gd"
+}, {
 "base": "Node2D",
 "class": &"Game",
 "language": &"GDScript",
 "path": "res://scenes/game.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"Player",
+"language": &"GDScript",
+"path": "res://scenes/entities/player/player.gd"
 }, {
 "base": "Resource",
 "class": &"QuadTree",
@@ -37,7 +47,9 @@ _global_script_classes=[{
 _global_script_class_icons={
 "Bullet": "",
 "Destructible": "",
+"Enemy": "",
 "Game": "",
+"Player": "",
 "QuadTree": "",
 "Weapon": ""
 }
@@ -46,6 +58,7 @@ _global_script_class_icons={
 
 config/name="earth-defence"
 run/main_scene="res://scenes/game.tscn"
+boot_splash/bg_color=Color(0.133333, 0.12549, 0.203922, 1)
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
@@ -92,4 +105,5 @@ jump={
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.133333, 0.12549, 0.203922, 1)
 textures/canvas_textures/default_texture_filter=0

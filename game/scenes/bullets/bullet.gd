@@ -7,7 +7,9 @@ extends RigidDynamicBody2D
 @export_node_path(Polygon2D) var destruction_polygon_path: NodePath
 
 var timeout_timer: Timer
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var game: Game = get_tree().current_scene
 @onready var destruction_polygon: Polygon2D = get_node(destruction_polygon_path)
 
 
@@ -18,11 +20,14 @@ func _ready():
 	timeout_timer.wait_time = timeout_time
 	add_child(timeout_timer)
 	timeout_timer.connect("timeout", _on_timeout_timer)
+	timeout_timer.start()
+	apply_central_impulse(Vector2(start_velocity, 0).rotated(rotation))
 
 
 func _physics_process(delta):
-	apply_central_impulse(Vector2(start_velocity, 0).rotated(rotation))
-	set_physics_process(false)
+	var gravity_dir := global_position.direction_to(game.get_gravity_point()).normalized()
+	apply_central_force(gravity_dir * gravity * delta)
+	look_at(global_position + linear_velocity)
 
 
 func _on_body_entered(body: Node):
