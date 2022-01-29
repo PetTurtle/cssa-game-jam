@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://csoviotd8nvwb"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
+[ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
+[ext_resource type="Script" path="res://components/Destructible.gd" id="2_d1y56"]
+[ext_resource type="PackedScene" uid="uid://ct5w82ip6wi2v" path="res://scenes/entities/Player.tscn" id="3_dx44n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdkaw"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( "1_3wurr" )
+
+[node name="GravityPoint" type="Position2D" parent="."]
+position = Vector2(128, 128)
+__meta__ = {
+"_gizmo_extents_": 14.4
+}
+
+[node name="Planet" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( "PhysicsMaterial_gdkaw" )
+
+[node name="Destructible" type="Sprite2D" parent="Planet"]
+texture = ExtResource( "1_axvxh" )
+centered = false
+script = ExtResource( "2_d1y56" )
+detail = 2.0
+block_size = Vector2(128, 128)
+
+[node name="Shape" type="Polygon2D" parent="Planet/Destructible"]
+polygon = PackedVector2Array(-3, -2, -1, -4, 1, -4, 3, -1, 3, 0, 2, 3, -2, 3, -4, 1)
+
+[node name="Player" parent="." instance=ExtResource( "3_dx44n" )]
+position = Vector2(128, 26)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 2)
+rotating = true
+current = true
+smoothing_enabled = true
+smoothing_speed = 15.0
