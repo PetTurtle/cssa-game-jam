@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct5w82ip6wi2v"]
+[gd_scene load_steps=5 format=3 uid="uid://ct5w82ip6wi2v"]
 
 [ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_2ks52"]
 [ext_resource type="Texture2D" uid="uid://cg42fdreb8fbr" path="res://scenes/entities/player.png" id="1_vuotm"]
+[ext_resource type="PackedScene" uid="uid://cjt725we6x1j5" path="res://scenes/weapons/pistol.tscn" id="3_5qmb6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hlw7v"]
 radius = 5.0
@@ -32,3 +33,12 @@ target_position = Vector2(0, 10)
 
 [node name="Arm" type="Node2D" parent="Shoulder"]
 position = Vector2(7, 0)
+
+[node name="Pistol" parent="Shoulder/Arm" instance=ExtResource( "3_5qmb6" )]
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

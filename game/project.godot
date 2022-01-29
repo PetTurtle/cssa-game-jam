@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "RigidDynamicBody2D",
+"class": &"Bullet",
+"language": &"GDScript",
+"path": "res://scenes/bullets/bullet.gd"
+}, {
 "base": "Sprite2D",
 "class": &"Destructible",
 "language": &"GDScript",
@@ -23,11 +28,18 @@ _global_script_classes=[{
 "class": &"QuadTree",
 "language": &"GDScript",
 "path": "res://scripts/quadtree.gd"
+}, {
+"base": "Node2D",
+"class": &"Weapon",
+"language": &"GDScript",
+"path": "res://scenes/weapons/weapon.gd"
 }]
 _global_script_class_icons={
+"Bullet": "",
 "Destructible": "",
 "Game": "",
-"QuadTree": ""
+"QuadTree": "",
+"Weapon": ""
 }
 
 [application]
@@ -46,12 +58,12 @@ window/stretch/aspect="expand"
 
 [input]
 
-mouse_1={
+fire_1={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
 ]
 }
-mouse_2={
+fire_2={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"pressed":false,"double_click":false,"script":null)
 ]

@@ -2,7 +2,7 @@ class_name Destructible
 extends Sprite2D
 
 @export_range(0.01, 10) var detail := 1.0
-@export var block_size := Vector2(25, 25)
+@export var block_size := Vector2(128, 128)
 @export var min_block_area := 100.0
 
 @onready var body: PhysicsBody2D = get_parent()
@@ -29,24 +29,12 @@ func _ready():
 				_create_block(transfrom * polygon, Vector2i(x/block_size.x, y/block_size.y))
 
 
-func _input(event):
-	if event.is_action_pressed("mouse_1"):
-		expode(get_local_mouse_position())
-	elif event.is_action_pressed("mouse_2"):
-		var aa = load("res://rigid_dynamic_body_2d.tscn").instantiate()
-		get_tree().current_scene.add_child(aa)
-		aa.position = get_local_mouse_position()
-
-
-func expode(pos: Vector2):
-	pos = to_local(pos)
-	var transfrom := Transform2D(0, pos)
-	var grid = (pos/block_size).floor()
+func expode(transfrom: Transform2D, mask: PackedVector2Array):
+	var grid = (transfrom.origin/block_size).floor()
 	var blocks = quadtree.query(grid.x, grid.y, 1.5)
 	for block in blocks:
-		var res = Geometry2D.clip_polygons(block[1].polygon, transfrom * $Shape.polygon)
+		var res = Geometry2D.clip_polygons(block[1].polygon, transfrom * mask)
 		if res.size() > 0:
-			print(_get_area(res[0]))
 			if _get_area(res[0]) < min_block_area:
 				block[1].queue_free()
 				block[0].queue_free()
@@ -84,5 +72,4 @@ func _get_area(array: PackedVector2Array) -> float:
 	for i in range(0, array.size()):
 		a += array[i].x * array[(i+1)%(array.size())].y
 		b += array[i].y * array[(i+1)%(array.size())].x
-	print((a - b) * 0.5)
 	return (a - b) * 0.5

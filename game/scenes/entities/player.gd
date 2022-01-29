@@ -7,6 +7,8 @@ extends CharacterBody2D
 @export var friction := 0.5
 
 @onready var arm: Node2D = $Shoulder
+@onready var weapon: Weapon = $Shoulder/Arm/Pistol
+@onready var coyote_timer: Timer = $CoyoteTimer
 @onready var ground_cast_left: RayCast2D = $GroundCast/GroundCastLeft
 @onready var ground_cast_right: RayCast2D = $GroundCast/GroundCastRight
 @onready var ground_cast_center: RayCast2D = $GroundCast/GroundCastCenter
@@ -15,13 +17,27 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var velocity := Vector2.ZERO
+
 var jumped := false
+var coyote_time := false
+
+
+func _input(event):
+	if event.is_action_pressed("fire_1"):
+		weapon.set_fire(true)
+	elif event.is_action_released("fire_1"):
+		weapon.set_fire(false)
 
 
 func _physics_process(delta: float):
 	arm.look_at(get_global_mouse_position())
 	
 	var grounded := is_grounded()
+	if grounded:
+		coyote_time = true
+	elif coyote_timer.is_stopped():
+		coyote_timer.start()
+	
 	var gravity_dir := global_position.direction_to(get_tree().current_scene.gravity.global_position).normalized()
 	motion_velocity += gravity_dir * gravity * delta
 	rotation = gravity_dir.angle() - PI/2
@@ -36,7 +52,7 @@ func _physics_process(delta: float):
 	elif grounded:
 		velocity.x = lerp(velocity.x, 0 , friction)
 	
-	if grounded and Input.is_action_just_pressed("jump"):
+	if coyote_time and Input.is_action_just_pressed("jump"):
 		velocity = Vector2(velocity.x, -jump_force)
 		jumped = true
 	elif jumped and Input.is_action_just_released("jump"):
@@ -50,3 +66,7 @@ func _physics_process(delta: float):
 
 func is_grounded() -> bool:
 	return ground_cast_left.is_colliding() or ground_cast_right.is_colliding() or ground_cast_center.is_colliding()
+
+
+func _on_coyote_timer_timeout():
+	coyote_time = false
