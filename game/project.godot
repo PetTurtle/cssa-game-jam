@@ -9,20 +9,35 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "RigidDynamicBody2D",
+"base": "Node",
+"class": &"Boid",
+"language": &"GDScript",
+"path": "res://components/boid.gd"
+}, {
+"base": "Node",
+"class": &"BoidField",
+"language": &"GDScript",
+"path": "res://components/boid_field.gd"
+}, {
+"base": "Node",
+"class": &"BoidOrbiter",
+"language": &"GDScript",
+"path": "res://components/boid_orbiter.gd"
+}, {
+"base": "Area2D",
 "class": &"Bullet",
 "language": &"GDScript",
 "path": "res://scenes/bullets/bullet.gd"
+}, {
+"base": "Node",
+"class": &"Damageable",
+"language": &"GDScript",
+"path": "res://components/damageable.gd"
 }, {
 "base": "Sprite2D",
 "class": &"Destructible",
 "language": &"GDScript",
 "path": "res://components/Destructible.gd"
-}, {
-"base": "RigidDynamicBody2D",
-"class": &"Enemy",
-"language": &"GDScript",
-"path": "res://scenes/enemies/enemy.gd"
 }, {
 "base": "Node2D",
 "class": &"Game",
@@ -39,18 +54,27 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/quadtree.gd"
 }, {
+"base": "Line2D",
+"class": &"Trail",
+"language": &"GDScript",
+"path": "res://components/trail.gd"
+}, {
 "base": "Node2D",
 "class": &"Weapon",
 "language": &"GDScript",
 "path": "res://scenes/weapons/weapon.gd"
 }]
 _global_script_class_icons={
+"Boid": "",
+"BoidField": "",
+"BoidOrbiter": "",
 "Bullet": "",
+"Damageable": "",
 "Destructible": "",
-"Enemy": "",
 "Game": "",
 "Player": "",
 "QuadTree": "",
+"Trail": "",
 "Weapon": ""
 }
 
@@ -97,6 +121,14 @@ jump={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Planet"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Bullet"
+2d_physics/layer_5="Crate"
 
 [physics]
 

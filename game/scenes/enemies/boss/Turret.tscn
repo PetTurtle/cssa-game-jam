@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddfhuwbqrqa2w"]
+
+[ext_resource type="Texture2D" uid="uid://c33ns6cse7ao8" path="res://scenes/enemies/battleship/turret.png" id="1_a4kn3"]
+[ext_resource type="Script" path="res://scenes/enemies/boss/turret.gd" id="1_aaqcm"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="2_smkjg"]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource( "1_aaqcm" )
+
+[node name="Turret" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+texture = ExtResource( "1_a4kn3" )
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource( "2_smkjg" )
+rof = 2.0
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_red.tscn"
+fire_points_path = NodePath("../FirePoints")
+
+[node name="FirePoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="FirePoints"]
+position = Vector2(12, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+collision_mask = 3

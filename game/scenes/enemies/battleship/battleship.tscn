@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1a7ywuktewny"]
+
+[ext_resource type="Texture2D" uid="uid://vsij3ghlrid4" path="res://scenes/enemies/battleship/battleship.png" id="1_sje7c"]
+[ext_resource type="Script" path="res://scenes/enemies/battleship/battleship.gd" id="1_v3si5"]
+[ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_xiijb"]
+[ext_resource type="Script" path="res://components/boid_field.gd" id="2_x4w7l"]
+[ext_resource type="Script" path="res://components/damageable.gd" id="3_frio4"]
+[ext_resource type="Texture2D" uid="uid://c33ns6cse7ao8" path="res://scenes/enemies/battleship/turret.png" id="6_8r43y"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="7_od725"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjphp"]
+size = Vector2(18, 6)
+
+[node name="Battleship" type="RigidDynamicBody2D"]
+collision_layer = 4
+collision_mask = 3
+linear_damp = 0.5
+script = ExtResource( "1_v3si5" )
+
+[node name="BoidOrbiter" type="Node" parent="."]
+script = ExtResource( "1_xiijb" )
+speed = 5
+orbit_speed = 10
+orbit_distance_min = 220
+orbit_distance_max = 225
+
+[node name="BoidField" type="Node" parent="."]
+script = ExtResource( "2_x4w7l" )
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource( "3_frio4" )
+health = 8
+
+[node name="Battleship" type="Sprite2D" parent="."]
+texture = ExtResource( "1_sje7c" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.18557e-08, 0)
+shape = SubResource( "RectangleShape2D_qjphp" )
+
+[node name="Turret" type="Node2D" parent="."]
+position = Vector2(-6, 0)
+
+[node name="Sprite" type="Sprite2D" parent="Turret"]
+position = Vector2(2, 0)
+texture = ExtResource( "6_8r43y" )
+
+[node name="RayCast2D" type="RayCast2D" parent="Turret"]
+target_position = Vector2(150, 0)
+collision_mask = 3
+
+[node name="FirePoints" type="Node2D" parent="Turret"]
+
+[node name="Position2D" type="Position2D" parent="Turret/FirePoints"]
+position = Vector2(8, 0)
+
+[node name="Weapon" type="Node2D" parent="Turret"]
+position = Vector2(6, 0)
+script = ExtResource( "7_od725" )
+rof = 2.0
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_red.tscn"
+fire_points_path = NodePath("../FirePoints")
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
+[connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

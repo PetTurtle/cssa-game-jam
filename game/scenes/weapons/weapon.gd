@@ -46,6 +46,7 @@ func _on_fire_timer():
 	if fire:
 		var bullet = bullet_scene.instantiate()
 		bullet.position = fire_points[fire_point_index].global_position
+		fire_point_index = (fire_point_index+1) % fire_points.size()
 		bullet.rotation = global_rotation
 		get_tree().current_scene.add_child(bullet)
 		fire_timer.start()

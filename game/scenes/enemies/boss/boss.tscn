@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvicxdvdftbg4"]
+
+[ext_resource type="Texture2D" uid="uid://chf8ytfy35mem" path="res://scenes/enemies/boss/boss.png" id="1_0t2g8"]
+[ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_mabdp"]
+[ext_resource type="Script" path="res://scenes/enemies/boss/boss.gd" id="1_rrsxb"]
+[ext_resource type="Script" path="res://components/boid_field.gd" id="2_4bjh7"]
+[ext_resource type="Script" path="res://components/damageable.gd" id="4_uqnul"]
+[ext_resource type="PackedScene" uid="uid://ddfhuwbqrqa2w" path="res://scenes/enemies/boss/Turret.tscn" id="6_se47r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_daisy"]
+size = Vector2(51, 18)
+
+[node name="Boss" type="RigidDynamicBody2D"]
+collision_layer = 4
+collision_mask = 3
+linear_damp = 0.5
+script = ExtResource( "1_rrsxb" )
+
+[node name="BoidOrbiter" type="Node" parent="."]
+script = ExtResource( "1_mabdp" )
+speed = 10
+orbit_speed = 10
+orbit_distance_min = 220
+orbit_distance_max = 300
+
+[node name="BoidField" type="Node" parent="."]
+script = ExtResource( "2_4bjh7" )
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource( "4_uqnul" )
+
+[node name="Boss" type="Sprite2D" parent="."]
+texture = ExtResource( "1_0t2g8" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource( "RectangleShape2D_daisy" )
+
+[node name="Turret" parent="." instance=ExtResource( "6_se47r" )]
+position = Vector2(-22, 0)
+
+[node name="Turret3" parent="." instance=ExtResource( "6_se47r" )]
+position = Vector2(-1, 0)
+
+[node name="Turret2" parent="." instance=ExtResource( "6_se47r" )]
+position = Vector2(20, 0)
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
+[connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

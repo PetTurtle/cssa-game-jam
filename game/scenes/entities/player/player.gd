@@ -65,7 +65,6 @@ func _physics_process(delta: float):
 	if is_grounded():
 		if move_dir != 0:
 			anim_sprite.play("run")
-			print(motion_velocity.length())
 		elif motion_velocity.length() > 40:
 			anim_sprite.play("slide")
 		else:

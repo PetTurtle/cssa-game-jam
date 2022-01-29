@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuy5c54dd2jxi"]
+
+[ext_resource type="Script" path="res://scenes/bullets/bullet.gd" id="1_mvyb8"]
+[ext_resource type="Texture2D" uid="uid://bi1jvywolag0f" path="res://scenes/bullets/yellow.png" id="2_us5k1"]
+[ext_resource type="Script" path="res://components/trail.gd" id="3_h4yia"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ql75"]
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_3bli7"]
+max_value = 3.0
+_data = [Vector2(0, 0), -0.661319, 0.0, 0, 0, Vector2(1, 2.80909), 0.0, 0.0, 0, 0]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( "1_mvyb8" )
+timeout_time = 4.0
+destruction_polygon_path = NodePath("DestructionMask")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_7ql75" )
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource( "2_us5k1" )
+
+[node name="DestructionMask" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(8, 0, 0, -2, -3, 0, 0, 2)
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+width = 1.0
+width_curve = SubResource( "Curve_3bli7" )
+default_color = Color(0.984314, 0.94902, 0.211765, 1)
+script = ExtResource( "3_h4yia" )

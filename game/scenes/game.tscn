@@ -67,6 +67,8 @@ visible = false
 polygon = PackedVector2Array(-107, -4, -38, 6, -73, 22, -47, 22, -63, 45, -32, 40, -63, 94, -5, 53, 39, 97, 27, 27, 92, 51, 71.0842, 30.8589, 101, 16, 52.2818, 12.7529, 38, -1, 74, -33, 77, -50, 48, -30, 31, -33, 28.4305, -56.7859, 30, -76, 34, -98, 3, -45, -13, -79, -29.1951, -68.1252, -52, -94, -49, -68, -65, -60, -34, -31, -62, -37, -93, -53, -60, -17, -77, -9)
 
 [node name="Planet" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 7
 physics_material_override = SubResource( "PhysicsMaterial_gdkaw" )
 
 [node name="Destructible" type="Sprite2D" parent="Planet"]

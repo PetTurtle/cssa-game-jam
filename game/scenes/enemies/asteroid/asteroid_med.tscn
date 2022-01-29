@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://mrqsdpw4unlg"]
+
+[ext_resource type="Script" path="res://components/damageable.gd" id="1_0ys6v"]
+[ext_resource type="Script" path="res://scenes/enemies/asteroid/asteroid.gd" id="1_bh7r2"]
+[ext_resource type="Texture2D" uid="uid://ob2xb131ui0x" path="res://scenes/enemies/asteroid/asteroid_med.png" id="2_f502n"]
+[ext_resource type="Script" path="res://components/boid_field.gd" id="2_tiwhv"]
+
+[node name="AsteroidMedium" type="RigidDynamicBody2D"]
+collision_layer = 4
+collision_mask = 3
+mass = 10.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( "1_bh7r2" )
+sub_count = 3
+sub_divs_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/enemies/asteroid/asteroid_small.tscn"
+
+[node name="BoidField" type="Node" parent="."]
+script = ExtResource( "2_tiwhv" )
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource( "1_0ys6v" )
+health = 3
+
+[node name="AsteroidMed" type="Sprite2D" parent="."]
+texture = ExtResource( "2_f502n" )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 2, -8, -3, -1, -8, 8, -5, 7, 4, 1, 8, -4, 8)
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
+[connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

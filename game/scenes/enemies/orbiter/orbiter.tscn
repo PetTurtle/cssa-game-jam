@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://de8q5rqbyow44"]
+
+[ext_resource type="Texture2D" uid="uid://bqmcl4cshimce" path="res://scenes/enemies/orbiter/orbiter.png" id="1_6yaho"]
+[ext_resource type="Script" path="res://scenes/enemies/orbiter/orbiter.gd" id="1_j3f8t"]
+[ext_resource type="Script" path="res://components/boid_field.gd" id="2_gppke"]
+[ext_resource type="Script" path="res://components/boid_orbiter.gd" id="2_v8p3p"]
+[ext_resource type="Script" path="res://components/damageable.gd" id="4_1amn6"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="5_hntbp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnkx8"]
+radius = 5.09902
+
+[node name="Orbiter" type="RigidDynamicBody2D"]
+collision_layer = 4
+collision_mask = 3
+linear_damp = 0.25
+script = ExtResource( "1_j3f8t" )
+
+[node name="BoidOrbiter" type="Node" parent="."]
+script = ExtResource( "2_v8p3p" )
+
+[node name="BoidField" type="Node" parent="."]
+script = ExtResource( "2_gppke" )
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource( "4_1amn6" )
+health = 5
+
+[node name="Orbiter" type="Sprite2D" parent="."]
+rotation = -1.57079
+texture = ExtResource( "1_6yaho" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_vnkx8" )
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource( "5_hntbp" )
+rof = 0.5
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_red.tscn"
+fire_points_path = NodePath("../Firepoints")
+
+[node name="Firepoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Firepoints"]
+position = Vector2(10, 0)
+
+[node name="FireRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(105, 0)
+collision_mask = 3
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
+[connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

@@ -39,12 +39,14 @@ radius = 5.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource( "1_me4tv" )
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 frames = SubResource( "SpriteFrames_j6u2j" )
 animation = &"idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,13 +58,16 @@ shape = SubResource( "CapsuleShape2D_es2dg" )
 [node name="GroundCastLeft" type="RayCast2D" parent="GroundCast"]
 position = Vector2(-4, 0)
 target_position = Vector2(0, 9)
+collision_mask = 2
 
 [node name="GroundCastRight" type="RayCast2D" parent="GroundCast"]
 position = Vector2(4, 0)
 target_position = Vector2(0, 9)
+collision_mask = 2
 
 [node name="GroundCastCenter" type="RayCast2D" parent="GroundCast"]
 target_position = Vector2(0, 10)
+collision_mask = 2
 
 [node name="Shoulder" type="Node2D" parent="."]
 

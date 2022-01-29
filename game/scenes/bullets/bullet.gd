@@ -1,13 +1,13 @@
 class_name Bullet
-extends RigidDynamicBody2D
+extends Area2D
 
-@export var start_velocity: float = 500.0
+@export var speed: float = 500.0
 @export var damage: int = 1
 @export var timeout_time: float = 10.0
 @export_node_path(Polygon2D) var destruction_polygon_path: NodePath
 
 var timeout_timer: Timer
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var velocity: Vector2
 
 @onready var game: Game = get_tree().current_scene
 @onready var destruction_polygon: Polygon2D = get_node(destruction_polygon_path)
@@ -21,18 +21,18 @@ func _ready():
 	add_child(timeout_timer)
 	timeout_timer.connect("timeout", _on_timeout_timer)
 	timeout_timer.start()
-	apply_central_impulse(Vector2(start_velocity, 0).rotated(rotation))
+	velocity = Vector2(speed, 0).rotated(rotation)
 
 
-func _physics_process(delta):
-	var gravity_dir := global_position.direction_to(game.get_gravity_point()).normalized()
-	apply_central_force(gravity_dir * gravity * delta)
-	look_at(global_position + linear_velocity)
+func _physics_process(delta: float):
+	global_position += velocity * delta
 
 
 func _on_body_entered(body: Node):
 	if body.has_node("Destructible"):
 		body.get_node("Destructible").expode(global_transform, destruction_polygon.polygon)
+	elif body.has_node("Damageable"):
+		body.get_node("Damageable").damage(damage)
 	queue_free()
 
 
