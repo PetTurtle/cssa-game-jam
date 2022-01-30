@@ -24,15 +24,15 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ExtResource( "5_8yo3k" ), ExtResource( "6_dhag8" ), ExtResource( "7_1xdo2" ), ExtResource( "8_yvqlw" )],
-"loop": true,
-"name": &"run",
-"speed": 7.5
-}, {
 "frames": [ExtResource( "9_srogg" )],
 "loop": true,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [ExtResource( "5_8yo3k" ), ExtResource( "6_dhag8" ), ExtResource( "7_1xdo2" ), ExtResource( "8_yvqlw" )],
+"loop": true,
+"name": &"run",
+"speed": 7.5
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es2dg"]
@@ -51,7 +51,6 @@ friction = 0.075
 position = Vector2(0, -1)
 frames = SubResource( "SpriteFrames_j6u2j" )
 animation = &"idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,11 +73,23 @@ collision_mask = 2
 target_position = Vector2(0, 10)
 collision_mask = 2
 
+[node name="GroundCastDiag" type="RayCast2D" parent="GroundCast"]
+position = Vector2(4, 7)
+rotation = 1.5708
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="GroundCastDiag2" type="RayCast2D" parent="GroundCast"]
+position = Vector2(-4, 7)
+rotation = -1.5708
+target_position = Vector2(0, 10)
+collision_mask = 2
+
 [node name="Shoulder" type="Node2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -3)
 
 [node name="Arm" type="Node2D" parent="Shoulder"]
-position = Vector2(9, 0)
+position = Vector2(4, 0)
 __meta__ = {
 "_edit_group_": true
 }

@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciyg6jcq1fnvl"]
+[gd_scene load_steps=15 format=3 uid="uid://ciyg6jcq1fnvl"]
 
 [ext_resource type="Script" path="res://scenes/Menu.gd" id="1_rqbv7"]
+[ext_resource type="Texture2D" uid="uid://duh1l54702g3t" path="res://resources/particles/star_01.png" id="2_2hjn8"]
+[ext_resource type="PackedScene" uid="uid://dtuyv0qqucwpf" path="res://scenes/menu/Transition.tscn" id="2_8m4bj"]
+[ext_resource type="Texture2D" uid="uid://d2hcqecylswxe" path="res://sky.png" id="2_o7okm"]
+[ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="3_vmiyb"]
+[ext_resource type="Texture2D" uid="uid://t7oca17oexa3" path="res://earth-background.png" id="4_cuqjk"]
+
+[sub_resource type="Curve" id="Curve_cwn78"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.493333, 2), -0.136364, -0.136364, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_juxdp"]
+curve = SubResource( "Curve_cwn78" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_ux1o8"]
+emission_shape = 2
+emission_box_extents = Vector3(360, 360, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource( "CurveTexture_juxdp" )
+color = Color(1, 1, 1, 0.152941)
+attractor_interaction_enabled = false
+
+[sub_resource type="Gradient" id="Gradient_5as4p"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.925408, 0.0226566, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_arvc7"]
+gradient = SubResource( "Gradient_5as4p" )
+
+[sub_resource type="Curve" id="Curve_a7x6i"]
+min_value = 0.5
+max_value = 4.0
+_data = [Vector2(0, 3.84091), 0.0, 0.0, 0, 0, Vector2(1, 0.5), -10.5412, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_iug03"]
+curve = SubResource( "Curve_a7x6i" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_dlx01"]
+emission_shape = 1
+emission_sphere_radius = 25.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.01
+scale_curve = SubResource( "CurveTexture_iug03" )
+color_ramp = SubResource( "GradientTexture1D_arvc7" )
+collision_enabled = true
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -10,14 +62,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Stars" type="GPUParticles2D" parent="."]
+position = Vector2(360, 191)
+amount = 100
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource( "ParticlesMaterial_ux1o8" )
+texture = ExtResource( "2_2hjn8" )
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(90, 313)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource( "2_o7okm" )
+
+[node name="Earth-background" type="Sprite2D" parent="."]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+position = Vector2(94, 321)
+scale = Vector2(0.97, 0.97)
+texture = ExtResource( "4_cuqjk" )
+
+[node name="Earth" type="Sprite2D" parent="."]
+position = Vector2(94, 321)
+texture = ExtResource( "3_vmiyb" )
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Earth"]
+amount = 500
+lifetime = 5.0
+preprocess = 5.0
+trail_length_secs = 1.0
+process_material = SubResource( "ParticlesMaterial_dlx01" )
+
 [node name="VBox" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.0
+offset_left = -156.0
 offset_top = -181.5
-offset_right = 121.0
+offset_right = 156.0
 offset_bottom = 181.5
 alignment = 1
 __meta__ = {
@@ -25,10 +107,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBox"]
-offset_top = 138.0
-offset_right = 242.0
-offset_bottom = 161.0
-text = "planet guardian"
+offset_top = 125.0
+offset_right = 312.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 36
+text = "Earth Defender!"
 horizontal_alignment = 1
 vertical_alignment = 1
 __meta__ = {
@@ -36,22 +119,25 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="VBox"]
-offset_top = 165.0
-offset_right = 242.0
-offset_bottom = 193.0
+offset_top = 177.0
+offset_right = 312.0
+offset_bottom = 205.0
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Exit" type="Button" parent="VBox"]
-offset_top = 197.0
-offset_right = 242.0
-offset_bottom = 225.0
+offset_top = 209.0
+offset_right = 312.0
+offset_bottom = 237.0
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Transition" parent="." instance=ExtResource( "2_8m4bj" )]
+
 [connection signal="pressed" from="VBox/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBox/Exit" to="." method="_on_exit_pressed"]
+[connection signal="closed" from="Transition" to="." method="_on_transition_closed"]

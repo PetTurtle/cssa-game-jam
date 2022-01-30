@@ -7,7 +7,8 @@
 [node name="SMG" type="Node2D"]
 script = ExtResource( "1_l2vpq" )
 rof = 15.0
-spread = 0.5
+recoil = 0.05
+spread = 0.6
 recoil_anim = true
 use_ammo = true
 bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_yellow.tscn"

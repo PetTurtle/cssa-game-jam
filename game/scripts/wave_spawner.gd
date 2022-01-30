@@ -67,7 +67,7 @@ var waves = [
 				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_MEDIUM]	
 			},
 			{
-				"delay": 20,
+				"delay": 10,
 				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
 			},
 		]
@@ -77,10 +77,14 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [ASTEROID_LARGE, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"enemies": [ASTEROID_LARGE]	
 			},
 			{
-				"delay": 30,
+				"delay": 5,
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL]	
+			},
+			{
+				"delay": 5,
 				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL]	
 			},
 		]
@@ -93,8 +97,8 @@ var waves = [
 				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
 			},
 			{
-				"delay": 25,
-				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 7,
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
 			},
 		]
 	},
@@ -106,16 +110,16 @@ var waves = [
 				"enemies": [ORBITER]	
 			},
 			{
-				"delay": 25,
-				"enemies": [ORBITER, ORBITER, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ASTEROID_SMALL, ASTEROID_SMALL]	
 			},
 			{
-				"delay": 35,
-				"enemies": [ORBITER, ORBITER, ASTEROID_SMALL, ASTEROID_MEDIUM, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ASTEROID_MEDIUM]	
 			},
 			{
-				"delay": 35,
-				"enemies": [ASTEROID_LARGE, ASTEROID_LARGE]	
+				"delay": 10,
+				"enemies": [ASTEROID_LARGE]	
 			},
 		]
 	},
@@ -124,19 +128,19 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER, ASTEROID_MEDIUM]	
+				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER]	
 			},
 			{
-				"delay": 15,
-				"enemies": [ORBITER, ORBITER, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
 			},
 			{
-				"delay": 20,
-				"enemies": [ORBITER, ORBITER, ASTEROID_LARGE, ASTEROID_MEDIUM, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ASTEROID_LARGE]	
 			},
 			{
-				"delay": 20,
-				"enemies": [ORBITER, ORBITER, ORBITER, ASTEROID_LARGE, ASTEROID_LARGE]	
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ASTEROID_LARGE]	
 			},
 		]
 	},
@@ -148,20 +152,24 @@ var waves = [
 				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 30,
-				"enemies": [FIGHTER, FIGHTER, FIGHTER, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 50,
-				"enemies": [ORBITER, ORBITER, ORBITER, FIGHTER, FIGHTER, FIGHTER, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ORBITER]	
 			},
 			{
-				"delay": 50,
-				"enemies": [ORBITER, ORBITER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 50,
-				"enemies": [ASTEROID_LARGE, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+			},
+			{
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, FIGHTER, FIGHTER]	
 			},
 		]
 	},
@@ -170,23 +178,23 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER, FIGHTER, FIGHTER, FIGHTER, FIGHTER]	
+				"enemies": [ORBITER, ORBITER, ORBITER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ORBITER, FIGHTER, FIGHTER, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 5,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 15,
+				"enemies": [ORBITER, FIGHTER, FIGHTER, ASTEROID_MEDIUM]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ASTEROID_LARGE, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 15,
+				"enemies": [ORBITER, ORBITER, ORBITER]	
 			},
 		]
 	},
@@ -195,19 +203,23 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [BATTLESHIP, BATTLESHIP, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER]	
+				"enemies": [BATTLESHIP]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER]	
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [BATTLESHIP, BATTLESHIP, BATTLESHIP, BATTLESHIP, BATTLESHIP, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER]	
+				"delay": 15,
+				"enemies": [BATTLESHIP, ORBITER, ORBITER, ORBITER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ASTEROID_LARGE, ASTEROID_LARGE, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 10,
+				"enemies": [BATTLESHIP, ORBITER, ORBITER, ORBITER]	
+			},
+			{
+				"delay": 15,
+				"enemies": [BATTLESHIP, BATTLESHIP, FIGHTER]	
 			},
 		]
 	},
@@ -216,23 +228,28 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [BOSS, BOSS, BATTLESHIP, BATTLESHIP, BATTLESHIP]	
+				"enemies": [BOSS]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER, ORBITER]	
+				"delay": 20,
+				"enemies": [BATTLESHIP, BATTLESHIP]	
 			},
 			{
-				"delay": 40,
-				"enemies": [BATTLESHIP, BATTLESHIP, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, FIGHTER]	
+				"delay": 15,
+				"enemies": [ORBITER, ORBITER, ORBITER]	
 			},
 			{
-				"delay": 40,
-				"enemies": [ASTEROID_LARGE, ASTEROID_LARGE, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_MEDIUM, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+				"delay": 15,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
 			},
+		]
+	},
+	{
+		"name": "Final Wave!",
+		"attacks": [
 			{
-				"delay": 80,
-				"enemies": [ORBITER, ORBITER, FIGHTER, FIGHTER, FIGHTER, FIGHTER, BOSS, BOSS, BOSS, BOSS]	
+				"delay": 10,
+				"enemies": [BOSS, BATTLESHIP, BATTLESHIP, FIGHTER, FIGHTER, ORBITER, ORBITER]	
 			},
 		]
 	},

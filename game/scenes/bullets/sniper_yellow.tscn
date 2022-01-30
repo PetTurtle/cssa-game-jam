@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bi1jvywolag0f" path="res://scenes/bullets/yellow.png" id="2_0n6ny"]
 [ext_resource type="Script" path="res://components/trail.gd" id="3_dgdyq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oj1bd"]
-radius = 2.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjyxi"]
+size = Vector2(10, 4)
 
 [sub_resource type="Curve" id="Curve_vxftf"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -24,7 +24,8 @@ destruction_polygon_path = NodePath("Polygon2D")
 texture = ExtResource( "2_0n6ny" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( "CircleShape2D_oj1bd" )
+position = Vector2(-1, 0)
+shape = SubResource( "RectangleShape2D_rjyxi" )
 
 [node name="Trail" type="Line2D" parent="."]
 top_level = true

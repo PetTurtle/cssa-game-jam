@@ -28,5 +28,10 @@ func get_boid_fields() -> Array:
 
 func _on_exit_pressed():
 	Engine.time_scale = 1
+	$UI/Transition.close()
+
+
+
+func _on_transition_closed():
 	get_tree().paused = false
 	get_tree().change_scene("res://scenes/Menu.tscn")

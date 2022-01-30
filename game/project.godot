@@ -110,10 +110,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="earth-defence"
+config/name="Earth Defender"
 run/main_scene="res://scenes/Menu.tscn"
+boot_splash/image="res://splash.png"
+boot_splash/use_filter=false
 boot_splash/bg_color=Color(0.133333, 0.12549, 0.203922, 1)
 config/icon="res://icon.png"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
 [display]

@@ -9,13 +9,15 @@ extends CharacterBody2D
 
 @onready var game: Game = get_tree().current_scene
 @onready var arm: Node2D = $Shoulder
-@onready var arm2: Node2D = $Shoulder
+@onready var arm2: Node2D = $Shoulder/Arm
 @onready var weapon: Weapon = $Shoulder/Arm/Pistol
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ground_cast_left: RayCast2D = $GroundCast/GroundCastLeft
 @onready var ground_cast_right: RayCast2D = $GroundCast/GroundCastRight
 @onready var ground_cast_center: RayCast2D = $GroundCast/GroundCastCenter
+@onready var ground_cast_diag: RayCast2D = $GroundCast/GroundCastDiag
+@onready var ground_cast_diag2: RayCast2D = $GroundCast/GroundCastDiag2
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var velocity := Vector2.ZERO
@@ -88,12 +90,13 @@ func _physics_process(delta: float):
 	
 
 func is_grounded() -> bool:
-	return ground_cast_left.is_colliding() or ground_cast_right.is_colliding() or ground_cast_center.is_colliding()
+	return ground_cast_left.is_colliding() or ground_cast_right.is_colliding() or ground_cast_center.is_colliding() or ground_cast_diag.is_colliding() or ground_cast_diag2.is_colliding()
 
 
 func change_weapon(weapon_path):
 	var new_weapon = load(weapon_path).instantiate()
 	arm2.add_child(new_weapon)
+	new_weapon.position = weapon.position
 	weapon.queue_free()
 	weapon = new_weapon
 	weapon.connect("out_of_ammo", _on_out_of_ammo)

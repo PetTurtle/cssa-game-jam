@@ -6,9 +6,9 @@
 
 [node name="Rifle" type="Node2D"]
 script = ExtResource( "1_4x7y7" )
-rof = 7.0
-recoil = 0.01
-spread = 0.2
+rof = 4.0
+recoil = 0.005
+spread = 0.15
 recoil_anim = true
 use_ammo = true
 bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_yellow.tscn"

@@ -23,8 +23,8 @@ script = ExtResource( "1_rrsxb" )
 script = ExtResource( "1_mabdp" )
 speed = 10
 orbit_speed = 10
-orbit_distance_min = 220
-orbit_distance_max = 300
+orbit_distance_min = 200
+orbit_distance_max = 205
 
 [node name="BoidField" type="Node" parent="."]
 script = ExtResource( "2_4bjh7" )

@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtuyv0qqucwpf"]
+
+[ext_resource type="Shader" path="res://resources/shader/transition.gdshader" id="1_p116g"]
+[ext_resource type="Texture2D" uid="uid://cepjieedjsp65" path="res://resources/transition.png" id="2_xh6qj"]
+[ext_resource type="Script" path="res://scenes/menu/Transition.gd" id="3_bpsed"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rj5uk"]
+shader = ExtResource( "1_p116g" )
+shader_param/cutoff = 1.0
+shader_param/smooth_size = 0.2
+shader_param/mask = ExtResource( "2_xh6qj" )
+
+[sub_resource type="Animation" id="Animation_4erx8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource( "1_p116g" )]
+}
+
+[sub_resource type="Animation" id="Animation_lfwps"]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_f534t"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[node name="Transition" type="ColorRect"]
+material = SubResource( "ShaderMaterial_rj5uk" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.133333, 0.12549, 0.203922, 1)
+script = ExtResource( "3_bpsed" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "open"
+anims/RESET = SubResource( "Animation_4erx8" )
+anims/close = SubResource( "Animation_lfwps" )
+anims/open = SubResource( "Animation_f534t" )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

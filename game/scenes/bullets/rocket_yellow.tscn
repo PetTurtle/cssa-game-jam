@@ -15,7 +15,6 @@ collision_layer = 8
 collision_mask = 6
 script = ExtResource( "1_b36e2" )
 speed = 100.0
-damage = 5
 track_speed = 50.0
 max_speed = 200.0
 timeout_time = 5.0
