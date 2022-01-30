@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://udiy4tlkl3gs"
+path="res://.godot/imported/lowFrequency_explosion_000.ogg-03cb0d4d6182f9ddddcd47716972b9ae.oggvorbisstr"
+
+[deps]
+
+source_file="res://resources/audio/lowFrequency_explosion_000.ogg"
+dest_files=["res://.godot/imported/lowFrequency_explosion_000.ogg-03cb0d4d6182f9ddddcd47716972b9ae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0

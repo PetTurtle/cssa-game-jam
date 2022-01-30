@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvicxdvdftbg4"]
+[gd_scene load_steps=11 format=3 uid="uid://cvicxdvdftbg4"]
 
 [ext_resource type="Texture2D" uid="uid://chf8ytfy35mem" path="res://scenes/enemies/boss/boss.png" id="1_0t2g8"]
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_mabdp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://components/drop_on_deapth.gd" id="5_iyw75"]
 [ext_resource type="PackedScene" uid="uid://ddfhuwbqrqa2w" path="res://scenes/enemies/boss/Turret.tscn" id="6_se47r"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="7_n1iuc"]
+[ext_resource type="Script" path="res://components/spawn_on_death.gd" id="9_sleh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_daisy"]
 size = Vector2(51, 18)
@@ -30,6 +31,7 @@ script = ExtResource( "2_4bjh7" )
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( "4_uqnul" )
+health = 50
 
 [node name="DropOnDeath" type="Node" parent="."]
 script = ExtResource( "5_iyw75" )
@@ -51,6 +53,9 @@ position = Vector2(-1, 0)
 position = Vector2(20, 0)
 
 [node name="Marker" parent="." instance=ExtResource( "7_n1iuc" )]
+
+[node name="SpawnOnDeath" type="Node" parent="."]
+script = ExtResource( "9_sleh3" )
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
 [connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

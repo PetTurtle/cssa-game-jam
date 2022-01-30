@@ -19,6 +19,7 @@ damage = 8
 track_speed = 50.0
 max_speed = 200.0
 timeout_time = 5.0
+explosion_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/explosion/explosion.tscn"
 destruction_polygon_path = NodePath("Polygon2D")
 
 [node name="YellowRocketl" type="Sprite2D" parent="."]

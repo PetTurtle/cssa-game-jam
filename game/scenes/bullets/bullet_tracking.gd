@@ -7,6 +7,7 @@ extends Area2D
 @export var track_distance := 100
 @export var max_speed := 100.0
 @export var timeout_time: float = 10.0
+@export_global_file(PackedScene) var explosion_path: String
 @export_node_path(Polygon2D) var destruction_polygon_path: NodePath
 
 var timeout_timer: Timer
@@ -42,6 +43,10 @@ func _on_body_entered(body: Node):
 		body.get_node("Destructible").expode(global_transform, destruction_polygon.polygon)
 	elif body.has_node("Damageable"):
 		body.get_node("Damageable").damage(damage)
+	var boom = load(explosion_path).instantiate()
+	game.add_child(boom)
+	boom.global_position = global_position
+	boom.global_rotation = global_rotation
 	queue_free()
 
 

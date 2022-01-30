@@ -17,6 +17,7 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( "1_rps2y" )
 speed = 250.0
+explosion_path = "res://scenes/explosion/explosion.tscn"
 destruction_polygon_path = NodePath("Polygon2D")
 
 [node name="White" type="Sprite2D" parent="."]

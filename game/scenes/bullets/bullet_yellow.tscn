@@ -16,6 +16,7 @@ collision_layer = 8
 collision_mask = 6
 script = ExtResource( "1_mvyb8" )
 timeout_time = 4.0
+explosion_path = "res://scenes/explosion/explosion.tscn"
 destruction_polygon_path = NodePath("DestructionMask")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bgrbdvij85l7m"]
+[gd_scene load_steps=39 format=3 uid="uid://bgrbdvij85l7m"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://scripts/victory.gd" id="5_xqg16"]
 [ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="6_4fm0u"]
 [ext_resource type="Script" path="res://scripts/game_0ver.gd" id="6_u6j4e"]
-[ext_resource type="PackedScene" uid="uid://bru313k3uda08" path="res://scenes/entities/drop/drop.tscn" id="15_qlk0u"]
 [ext_resource type="AudioStream" uid="uid://blcjh4hf6e4yy" path="res://resources/audio/start-level.wav" id="16_hr3he"]
 [ext_resource type="Script" path="res://scripts/music.gd" id="17_05f2y"]
 
@@ -421,30 +420,6 @@ script = ExtResource( "6_4fm0u" )
 [node name="DelayTimer" type="Timer" parent="WaveSpawner"]
 process_callback = 0
 one_shot = true
-
-[node name="Drop" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(30, 86)
-
-[node name="Drop2" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(84, 45)
-
-[node name="Drop3" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(39, 201)
-
-[node name="Drop4" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(98, 230)
-
-[node name="Drop5" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(175, 233)
-
-[node name="Drop6" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(217, 185)
-
-[node name="Drop7" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(234, 120)
-
-[node name="Drop8" parent="." instance=ExtResource( "15_qlk0u" )]
-position = Vector2(231, 56)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( "16_hr3he" )

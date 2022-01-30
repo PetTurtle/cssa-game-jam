@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://opsa20mxgqcc"
+path="res://.godot/imported/explosionCrunch_003.ogg-e3f9d8d36fd52fafbda5aeb6424fd0f0.oggvorbisstr"
+
+[deps]
+
+source_file="res://resources/audio/explosionCrunch_003.ogg"
+dest_files=["res://.godot/imported/explosionCrunch_003.ogg-e3f9d8d36fd52fafbda5aeb6424fd0f0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0

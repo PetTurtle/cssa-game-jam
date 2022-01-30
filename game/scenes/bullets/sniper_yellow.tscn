@@ -17,6 +17,7 @@ script = ExtResource( "1_trnuu" )
 speed = 800.0
 damage = 4
 timeout_time = 6.0
+explosion_path = "res://scenes/explosion/explosion.tscn"
 destruction_polygon_path = NodePath("Polygon2D")
 
 [node name="Yellow" type="Sprite2D" parent="."]
