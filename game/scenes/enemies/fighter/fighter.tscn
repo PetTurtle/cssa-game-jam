@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://gld1wbqp2u0a"]
+[gd_scene load_steps=11 format=3 uid="uid://gld1wbqp2u0a"]
 
 [ext_resource type="Script" path="res://scenes/enemies/fighter/fighter.gd" id="1_3alcv"]
 [ext_resource type="Texture2D" uid="uid://5i7r8on4jp32" path="res://scenes/enemies/fighter/fighter.png" id="1_i10am"]
 [ext_resource type="Script" path="res://components/boid.gd" id="2_c6emw"]
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_wgqla"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="3_il4xf"]
+[ext_resource type="Script" path="res://components/drop_on_deapth.gd" id="5_rdkwq"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="6_8rtli"]
 [ext_resource type="Script" path="res://components/trail.gd" id="7_g8vnp"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="8_0d8jy"]
@@ -31,6 +32,9 @@ script = ExtResource( "2_wgqla" )
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( "3_il4xf" )
 health = 4
+
+[node name="DropOnDeath" type="Node" parent="."]
+script = ExtResource( "5_rdkwq" )
 
 [node name="Fighter" type="Sprite2D" parent="."]
 position = Vector2(6, 0)

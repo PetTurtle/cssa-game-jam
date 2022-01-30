@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @onready var game: Game = get_tree().current_scene
 @onready var arm: Node2D = $Shoulder
+@onready var arm2: Node2D = $Shoulder
 @onready var weapon: Weapon = $Shoulder/Arm/Pistol
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -18,6 +19,7 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var velocity := Vector2.ZERO
+var pistol_path := "res://scenes/weapons/pistol/pistol.tscn"
 
 var can_fire := true
 var jumped := false
@@ -33,6 +35,10 @@ func _input(event):
 
 func _physics_process(delta: float):
 	arm.look_at(get_global_mouse_position())
+	if arm.rotation > -PI/2:
+		arm.scale.y = 1
+	else:
+		arm.scale.y = -1
 	
 	var grounded := is_grounded()
 	if grounded:
@@ -81,6 +87,18 @@ func _physics_process(delta: float):
 func is_grounded() -> bool:
 	return ground_cast_left.is_colliding() or ground_cast_right.is_colliding() or ground_cast_center.is_colliding()
 
+
+func change_weapon(weapon_path):
+	var new_weapon = load(weapon_path).instantiate()
+	arm2.add_child(new_weapon)
+	weapon.queue_free()
+	weapon = new_weapon
+	weapon.connect("out_of_ammo", _on_out_of_ammo)
+	weapon.set_fire(Input.is_action_pressed("fire_1"))
+
+
+func _on_out_of_ammo():
+	change_weapon(pistol_path)
 
 func _on_coyote_timer_timeout():
 	coyote_time = false

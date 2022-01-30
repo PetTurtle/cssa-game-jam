@@ -14,3 +14,7 @@ func _process(delta):
 
 func _on_play_pressed():
 	get_tree().change_scene_to(game_scene)
+
+
+func _on_exit_pressed():
+	get_tree().quit()

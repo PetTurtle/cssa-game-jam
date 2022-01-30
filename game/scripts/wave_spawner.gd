@@ -183,7 +183,7 @@ var waves = [
 ]
 
 var wave
-var wave_id := 6
+var wave_id := 11
 
 var attack
 var attack_id := 0

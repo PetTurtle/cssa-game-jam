@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var point: Node2D = $Point
-@onready var icon: Node2D = $Point/Sprite/Icon
+@onready var icon: Node2D = $Point/Icon
 
 func _ready():
 	var tween := create_tween()

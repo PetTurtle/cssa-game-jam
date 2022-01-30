@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1a7ywuktewny"]
+[gd_scene load_steps=11 format=3 uid="uid://c1a7ywuktewny"]
 
 [ext_resource type="Texture2D" uid="uid://vsij3ghlrid4" path="res://scenes/enemies/battleship/battleship.png" id="1_sje7c"]
 [ext_resource type="Script" path="res://scenes/enemies/battleship/battleship.gd" id="1_v3si5"]
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_xiijb"]
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_x4w7l"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="3_frio4"]
+[ext_resource type="Script" path="res://components/drop_on_deapth.gd" id="5_rl6n2"]
 [ext_resource type="Texture2D" uid="uid://c33ns6cse7ao8" path="res://scenes/enemies/battleship/turret.png" id="6_8r43y"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="7_od725"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="8_5l5fr"]
@@ -31,6 +32,9 @@ script = ExtResource( "2_x4w7l" )
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( "3_frio4" )
 health = 8
+
+[node name="DropOnDeath" type="Node" parent="."]
+script = ExtResource( "5_rl6n2" )
 
 [node name="Battleship" type="Sprite2D" parent="."]
 texture = ExtResource( "1_sje7c" )

@@ -1,15 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://fk1ffm5cfbt5"]
+[gd_scene load_steps=14 format=3 uid="uid://dflociufxx6o6"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_phqo8"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player7.png" id="2_4w5m0"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player1.png" id="3_nv8bb"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player2.png" id="4_000x6"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player3.png" id="5_8yo3k"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player4.png" id="6_dhag8"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player5.png" id="7_1xdo2"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player6.png" id="8_yvqlw"]
-[ext_resource type="Texture2D" path="res://scenes/player/assets/player8.png" id="9_srogg"]
-[ext_resource type="PackedScene" uid="uid://cjt725we6x1j5" path="res://scenes/weapons/pistol.tscn" id="10_nxtua"]
+[ext_resource type="Texture2D" uid="uid://cjey8tu6i47uj" path="res://scenes/player/assets/player7.png" id="2_4w5m0"]
+[ext_resource type="Texture2D" uid="uid://cpyo5so78kyv3" path="res://scenes/player/assets/player1.png" id="3_nv8bb"]
+[ext_resource type="Texture2D" uid="uid://deesg8rrepxof" path="res://scenes/player/assets/player2.png" id="4_000x6"]
+[ext_resource type="Texture2D" uid="uid://1dup3weferpm" path="res://scenes/player/assets/player3.png" id="5_8yo3k"]
+[ext_resource type="Texture2D" uid="uid://bywya3uikueda" path="res://scenes/player/assets/player4.png" id="6_dhag8"]
+[ext_resource type="Texture2D" uid="uid://yfvqk4w6s28p" path="res://scenes/player/assets/player5.png" id="7_1xdo2"]
+[ext_resource type="Texture2D" uid="uid://cul7gu3wrywo7" path="res://scenes/player/assets/player6.png" id="8_yvqlw"]
+[ext_resource type="Texture2D" uid="uid://clcot8qmcpk1r" path="res://scenes/player/assets/player8.png" id="9_srogg"]
+[ext_resource type="PackedScene" uid="uid://cjt725we6x1j5" path="res://scenes/weapons/pistol/pistol.tscn" id="10_nxtua"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j6u2j"]
 animations = [{
@@ -76,7 +76,10 @@ collision_mask = 2
 [node name="Shoulder" type="Node2D" parent="."]
 
 [node name="Arm" type="Node2D" parent="Shoulder"]
-position = Vector2(7, 0)
+position = Vector2(7, -1)
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Pistol" parent="Shoulder/Arm" instance=ExtResource( "10_nxtua" )]
 

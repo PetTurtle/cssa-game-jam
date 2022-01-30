@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn0sg4aysd5om"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="1_afmrt"]
+[ext_resource type="Texture2D" uid="uid://b1e0ui7pbkc1s" path="res://scenes/weapons/sniper/sniper.png" id="2_bxh5y"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( "1_afmrt" )
+rof = 1.0
+recoil_anim = true
+ammo = 10
+use_ammo = true
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_yellow.tscn"
+fire_points_path = NodePath("Node2D")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(3, -1)
+texture = ExtResource( "2_bxh5y" )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Node2D"]
+position = Vector2(11, -1.5)

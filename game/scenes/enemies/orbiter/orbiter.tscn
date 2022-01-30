@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://de8q5rqbyow44"]
+[gd_scene load_steps=10 format=3 uid="uid://de8q5rqbyow44"]
 
 [ext_resource type="Texture2D" uid="uid://bqmcl4cshimce" path="res://scenes/enemies/orbiter/orbiter.png" id="1_6yaho"]
 [ext_resource type="Script" path="res://scenes/enemies/orbiter/orbiter.gd" id="1_j3f8t"]
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_gppke"]
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="2_v8p3p"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="4_1amn6"]
+[ext_resource type="Script" path="res://components/drop_on_deapth.gd" id="5_44bu0"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="5_hntbp"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="7_oq83n"]
 
@@ -28,6 +29,9 @@ script = ExtResource( "2_gppke" )
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( "4_1amn6" )
 health = 5
+
+[node name="DropOnDeath" type="Node" parent="."]
+script = ExtResource( "5_44bu0" )
 
 [node name="Orbiter" type="Sprite2D" parent="."]
 rotation = -1.57079

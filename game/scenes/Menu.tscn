@@ -25,9 +25,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBox"]
-offset_top = 151.0
+offset_top = 138.0
 offset_right = 242.0
-offset_bottom = 177.0
+offset_bottom = 161.0
 text = "planet guardian"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -36,12 +36,22 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="VBox"]
-offset_top = 181.0
+offset_top = 165.0
 offset_right = 242.0
-offset_bottom = 212.0
+offset_bottom = 193.0
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Exit" type="Button" parent="VBox"]
+offset_top = 197.0
+offset_right = 242.0
+offset_bottom = 225.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="VBox/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBox/Exit" to="." method="_on_exit_pressed"]

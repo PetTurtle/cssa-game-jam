@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvicxdvdftbg4"]
+[gd_scene load_steps=10 format=3 uid="uid://cvicxdvdftbg4"]
 
 [ext_resource type="Texture2D" uid="uid://chf8ytfy35mem" path="res://scenes/enemies/boss/boss.png" id="1_0t2g8"]
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_mabdp"]
 [ext_resource type="Script" path="res://scenes/enemies/boss/boss.gd" id="1_rrsxb"]
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_4bjh7"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="4_uqnul"]
+[ext_resource type="Script" path="res://components/drop_on_deapth.gd" id="5_iyw75"]
 [ext_resource type="PackedScene" uid="uid://ddfhuwbqrqa2w" path="res://scenes/enemies/boss/Turret.tscn" id="6_se47r"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="7_n1iuc"]
 
@@ -29,6 +30,9 @@ script = ExtResource( "2_4bjh7" )
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( "4_uqnul" )
+
+[node name="DropOnDeath" type="Node" parent="."]
+script = ExtResource( "5_iyw75" )
 
 [node name="Boss" type="Sprite2D" parent="."]
 texture = ExtResource( "1_0t2g8" )

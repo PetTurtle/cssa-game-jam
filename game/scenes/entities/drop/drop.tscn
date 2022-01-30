@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bru313k3uda08"]
+
+[ext_resource type="Texture2D" uid="uid://cddip3hmoitb8" path="res://scenes/entities/drop/drop.png" id="1_3jwsb"]
+[ext_resource type="Script" path="res://scenes/entities/drop/drop.gd" id="1_nmkj4"]
+[ext_resource type="Texture2D" uid="uid://kuoh54jitfd1" path="res://scenes/weapons/pistol/pistol.png" id="2_c8lj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p22wl"]
+size = Vector2(10, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1x87"]
+radius = 12.0
+
+[node name="Drop" type="RigidDynamicBody2D"]
+collision_layer = 0
+collision_mask = 2
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( "1_nmkj4" )
+
+[node name="Para" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource( "1_3jwsb" )
+
+[node name="Drop" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource( "2_c8lj3" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource( "RectangleShape2D_p22wl" )
+
+[node name="Pickup" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
+shape = SubResource( "CircleShape2D_r1x87" )
+
+[connection signal="body_entered" from="." to="." method="_on_drop_body_entered"]
+[connection signal="body_entered" from="Pickup" to="." method="_on_pickup_body_entered"]

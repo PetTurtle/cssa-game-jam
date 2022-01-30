@@ -1,9 +1,15 @@
 class_name Weapon
 extends Node2D
 
+signal out_of_ammo()
+
 @export var rof := 5.0
+@export var burst: int = 1
 @export var recoil: float = PI/128.0
 @export var spread: float = PI/8.0
+@export var recoil_anim := false
+@export var ammo: int = 100
+@export var use_ammo := false
 @export_global_file(PackedScene) var bullet_path: String
 @export_node_path(Node2D) var fire_points_path: NodePath
 
@@ -61,10 +67,20 @@ func _on_recoil_timer():
 
 
 func _fire():
-	var bullet = bullet_scene.instantiate()
-	bullet.position = fire_points[fire_point_index].global_position
-	fire_point_index = (fire_point_index+1) % fire_points.size()
-	bullet.rotation = global_rotation + randf_range(-curr_spread, curr_spread)
-	get_tree().current_scene.call_deferred("add_child", bullet)
-	curr_spread = min(spread, curr_spread + recoil)
+	for _i in range(burst):
+		var bullet = bullet_scene.instantiate()
+		bullet.position = fire_points[fire_point_index].global_position
+		fire_point_index = (fire_point_index+1) % fire_points.size()
+		bullet.rotation = global_rotation + randf_range(-curr_spread, curr_spread)
+		get_tree().current_scene.call_deferred("add_child", bullet)
+		curr_spread = min(spread, curr_spread + recoil)
+	if recoil_anim:
+		var tween := create_tween()
+		tween.parallel().tween_property($Sprite, "rotation", randf_range(-spread, spread), 0.05)
+		tween.parallel().tween_property($Sprite, "position", Vector2(-4, 0), fire_timer.wait_time/4)
+		tween.tween_property($Sprite, "rotation", 0.0, fire_timer.wait_time/2)
+		tween.tween_property($Sprite, "position", Vector2(0, 0), fire_timer.wait_time/2)
+	ammo -= 1
+	if use_ammo and ammo == 0:
+		emit_signal("out_of_ammo")
 	recoil_timer.start()

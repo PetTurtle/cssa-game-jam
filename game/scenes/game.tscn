@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bgrbdvij85l7m"]
+[gd_scene load_steps=38 format=3 uid="uid://bgrbdvij85l7m"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://d2hcqecylswxe" path="res://sky.png" id="2_dgc41"]
 [ext_resource type="Texture2D" uid="uid://duh1l54702g3t" path="res://resources/particles/star_01.png" id="2_hjxbl"]
 [ext_resource type="Script" path="res://scripts/planet_core.gd" id="2_xnqvc"]
-[ext_resource type="PackedScene" uid="uid://fk1ffm5cfbt5" path="res://scenes/player/Player.tscn" id="3_dx44n"]
+[ext_resource type="PackedScene" uid="uid://dflociufxx6o6" path="res://scenes/player/Player.tscn" id="3_dx44n"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_k7g8r"]
 [ext_resource type="Font" uid="uid://dnccwbywyppn1" path="res://resources/fonts/font_2.tres" id="4_v0jqx"]
 [ext_resource type="Texture2D" uid="uid://t7oca17oexa3" path="res://earth-background.png" id="5_6w83c"]
 [ext_resource type="Script" path="res://scripts/victory.gd" id="5_xqg16"]
 [ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="6_4fm0u"]
 [ext_resource type="Script" path="res://scripts/game_0ver.gd" id="6_u6j4e"]
+[ext_resource type="PackedScene" uid="uid://bru313k3uda08" path="res://scenes/entities/drop/drop.tscn" id="15_qlk0u"]
 
 [sub_resource type="Curve" id="Curve_5et1d"]
 max_value = 2.0
@@ -414,6 +415,30 @@ script = ExtResource( "6_4fm0u" )
 [node name="DelayTimer" type="Timer" parent="WaveSpawner"]
 process_callback = 0
 one_shot = true
+
+[node name="Drop" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(30, 86)
+
+[node name="Drop2" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(84, 45)
+
+[node name="Drop3" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(39, 201)
+
+[node name="Drop4" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(98, 230)
+
+[node name="Drop5" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(175, 233)
+
+[node name="Drop6" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(217, 185)
+
+[node name="Drop7" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(234, 120)
+
+[node name="Drop8" parent="." instance=ExtResource( "15_qlk0u" )]
+position = Vector2(231, 56)
 
 [connection signal="visibility_changed" from="UI/PauseScene" to="UI/PauseScene" method="_on_pause_scene_visibility_changed"]
 [connection signal="pressed" from="UI/PauseScene/VBoxContainer/HBoxContainer/Resume" to="UI/PauseScene" method="_on_resume_pressed"]
