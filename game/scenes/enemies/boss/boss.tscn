@@ -12,7 +12,7 @@ size = Vector2(51, 18)
 
 [node name="Boss" type="RigidDynamicBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 linear_damp = 0.5
 script = ExtResource( "1_rrsxb" )
 

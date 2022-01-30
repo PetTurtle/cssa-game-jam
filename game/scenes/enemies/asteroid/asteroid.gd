@@ -33,7 +33,7 @@ func _on_damageable_destroyed():
 
 func _on_body_entered(body: Node):
 	if body.has_node("Destructible"):
-		scale = Vector2(1.5, 1.5)
+		scale = Vector2(2, 2)
 		body.get_node("Destructible").expode(global_transform, $CollisionPolygon2D.polygon)
 		queue_free()
 

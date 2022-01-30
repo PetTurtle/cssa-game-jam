@@ -14,7 +14,7 @@ _data = [Vector2(0, 0.136364), 0.0, 3.05152, 0, 0, Vector2(1, 1.85455), 0.0, 0.0
 
 [node name="Fighter" type="RigidDynamicBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 mass = 2.0
 script = ExtResource( "1_3alcv" )
 

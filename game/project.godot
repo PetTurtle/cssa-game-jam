@@ -54,10 +54,20 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/quadtree.gd"
 }, {
+"base": "Node",
+"class": &"SpawnCounter",
+"language": &"GDScript",
+"path": "res://scripts/spawn_counter.gd"
+}, {
 "base": "Line2D",
 "class": &"Trail",
 "language": &"GDScript",
 "path": "res://components/trail.gd"
+}, {
+"base": "Node",
+"class": &"WaveSpawner",
+"language": &"GDScript",
+"path": "res://scripts/wave_spawner.gd"
 }, {
 "base": "Node2D",
 "class": &"Weapon",
@@ -74,14 +84,16 @@ _global_script_class_icons={
 "Game": "",
 "Player": "",
 "QuadTree": "",
+"SpawnCounter": "",
 "Trail": "",
+"WaveSpawner": "",
 "Weapon": ""
 }
 
 [application]
 
 config/name="earth-defence"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 boot_splash/bg_color=Color(0.133333, 0.12549, 0.203922, 1)
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
@@ -118,7 +130,11 @@ move_right={
 jump={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"unicode":0,"echo":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"unicode":0,"echo":false,"script":null)
 ]
 }
 

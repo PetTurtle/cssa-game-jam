@@ -1,13 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://doeuxfpxre76s"]
+[gd_scene load_steps=32 format=3 uid="uid://doeuxfpxre76s"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
+[ext_resource type="Script" path="res://scenes/WaveAnouncer.gd" id="2_5dvf4"]
 [ext_resource type="Script" path="res://components/Destructible.gd" id="2_d1y56"]
+[ext_resource type="Texture2D" uid="uid://d2hcqecylswxe" path="res://sky.png" id="2_dgc41"]
 [ext_resource type="Script" path="res://scripts/planet_core.gd" id="2_xnqvc"]
 [ext_resource type="PackedScene" uid="uid://c0r654ui6a0i6" path="res://scenes/entities/player/Player.tscn" id="3_dx44n"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_k7g8r"]
+[ext_resource type="Texture2D" uid="uid://t7oca17oexa3" path="res://earth-background.png" id="5_6w83c"]
+[ext_resource type="Script" path="res://scripts/victory.gd" id="5_xqg16"]
+[ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="6_4fm0u"]
+[ext_resource type="Script" path="res://scripts/game_0ver.gd" id="6_u6j4e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_af4d5"]
-radius = 36.0555
+radius = 27.0
 
 [sub_resource type="Gradient" id="Gradient_o20yb"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.925408, 0.0226566, 1)
@@ -25,7 +32,7 @@ curve = SubResource( "Curve_t5ct8" )
 
 [sub_resource type="ParticlesMaterial" id="ParticlesMaterial_03lwi"]
 emission_shape = 1
-emission_sphere_radius = 45.0
+emission_sphere_radius = 30.0
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.05
@@ -34,12 +41,241 @@ scale_curve = SubResource( "CurveTexture_iug03" )
 color_ramp = SubResource( "GradientTexture1D_arvc7" )
 collision_enabled = true
 
+[sub_resource type="Curve" id="Curve_40i06"]
+max_value = 50.0
+_data = [Vector2(0, 12.7273), 0.0, 0.0, 0, 0, Vector2(1, 0.454545), 0.0, 0.0, 0, 0]
+
+[sub_resource type="Gradient" id="Gradient_r11ix"]
+colors = PackedColorArray(1, 0.23343, 0.0607764, 1, 1, 0.743604, 0.0166175, 1)
+
+[sub_resource type="Gradient" id="Gradient_361fc"]
+colors = PackedColorArray(1, 0.208562, 0.111365, 1, 1, 0.841491, 0.00670582, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p7fup"]
+gradient = SubResource( "Gradient_361fc" )
+
+[sub_resource type="Curve" id="Curve_pm3ap"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0454545), 0.0, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_4adpv"]
+curve = SubResource( "Curve_pm3ap" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_0yisu"]
+emission_shape = 1
+emission_sphere_radius = 10.83
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 4.0
+scale_curve = SubResource( "CurveTexture_4adpv" )
+color_ramp = SubResource( "GradientTexture1D_p7fup" )
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+sub_emitter_keep_velocity = true
+attractor_interaction_enabled = false
+
+[sub_resource type="Gradient" id="Gradient_p6lme"]
+colors = PackedColorArray(0, 0, 0, 1, 0.5, 0.5, 0.5, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rvt42"]
+gradient = SubResource( "Gradient_p6lme" )
+
+[sub_resource type="Curve" id="Curve_mqmya"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0636363), 0.0, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_q143x"]
+curve = SubResource( "Curve_mqmya" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_i07sd"]
+emission_shape = 1
+emission_sphere_radius = 25.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 100.0
+scale_max = 5.0
+scale_curve = SubResource( "CurveTexture_q143x" )
+color_ramp = SubResource( "GradientTexture1D_rvt42" )
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdkaw"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( "1_3wurr" )
 
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource( "2_dgc41" )
+
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="WaveAnouncer" type="Control" parent="UI"]
+anchor_right = 1.0
+script = ExtResource( "2_5dvf4" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/WaveAnouncer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseScene" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "3_k7g8r" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="UI/PauseScene"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.560784)
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseScene"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -30.5
+offset_right = 91.0
+offset_bottom = 30.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/PauseScene/VBoxContainer"]
+offset_right = 182.0
+offset_bottom = 26.0
+text = "Paused!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseScene/VBoxContainer"]
+offset_top = 30.0
+offset_right = 182.0
+offset_bottom = 61.0
+
+[node name="Resume" type="Button" parent="UI/PauseScene/VBoxContainer/HBoxContainer"]
+offset_right = 89.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+text = "Resume"
+
+[node name="Exit" type="Button" parent="UI/PauseScene/VBoxContainer/HBoxContainer"]
+offset_left = 93.0
+offset_right = 182.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="Victory" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "5_xqg16" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="UI/Victory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.560784)
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="UI/Victory"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -30.5
+offset_right = 29.0
+offset_bottom = 30.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Victory/VBox"]
+offset_right = 77.0
+offset_bottom = 26.0
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="UI/Victory/VBox"]
+offset_top = 30.0
+offset_right = 77.0
+offset_bottom = 61.0
+text = "Continue"
+
+[node name="GameOver" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "6_u6j4e" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="UI/GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.560784)
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="UI/GameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -30.5
+offset_right = 45.5
+offset_bottom = 30.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/GameOver/VBox"]
+offset_right = 91.0
+offset_bottom = 26.0
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="UI/GameOver/VBox"]
+offset_top = 30.0
+offset_right = 91.0
+offset_bottom = 61.0
+text = "Restart"
 
 [node name="GravityPoint" type="Position2D" parent="."]
 position = Vector2(128, 128)
@@ -49,10 +285,17 @@ __meta__ = {
 
 [node name="PlanetCore" type="Area2D" parent="."]
 position = Vector2(128, 128)
+collision_layer = 0
+collision_mask = 13
 script = ExtResource( "2_xnqvc" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetCore"]
 shape = SubResource( "CircleShape2D_af4d5" )
+
+[node name="Earth-background" type="Sprite2D" parent="PlanetCore"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+scale = Vector2(0.97, 0.97)
+texture = ExtResource( "5_6w83c" )
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="PlanetCore"]
 amount = 500
@@ -65,6 +308,43 @@ process_material = SubResource( "ParticlesMaterial_03lwi" )
 [node name="ExplodeShape" type="Polygon2D" parent="PlanetCore"]
 visible = false
 polygon = PackedVector2Array(-107, -4, -38, 6, -73, 22, -47, 22, -63, 45, -32, 40, -63, 94, -5, 53, 39, 97, 27, 27, 92, 51, 71.0842, 30.8589, 101, 16, 52.2818, 12.7529, 38, -1, 74, -33, 77, -50, 48, -30, 31, -33, 28.4305, -56.7859, 30, -76, 34, -98, 3, -45, -13, -79, -29.1951, -68.1252, -52, -94, -49, -68, -65, -60, -34, -31, -62, -37, -93, -53, -60, -17, -77, -9)
+
+[node name="GameOverTimer" type="Timer" parent="PlanetCore"]
+one_shot = true
+
+[node name="Explode" type="CPUParticles2D" parent="PlanetCore"]
+emitting = false
+amount = 200
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.27
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource( "Curve_40i06" )
+color_ramp = SubResource( "Gradient_r11ix" )
+hue_variation_min = -0.59
+hue_variation_max = 0.26
+
+[node name="Explode2" type="GPUParticles2D" parent="PlanetCore"]
+emitting = false
+amount = 1000
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( "ParticlesMaterial_0yisu" )
+
+[node name="Explode3" type="GPUParticles2D" parent="PlanetCore"]
+emitting = false
+amount = 250
+one_shot = true
+preprocess = 0.5
+process_material = SubResource( "ParticlesMaterial_i07sd" )
 
 [node name="Planet" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -82,8 +362,26 @@ min_block_area = 500.0
 position = Vector2(128, 26)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, 2)
+position = Vector2(1, 0)
 rotating = true
 current = true
 smoothing_enabled = true
 smoothing_speed = 15.0
+
+[node name="WaveSpawner" type="Node" parent="."]
+script = ExtResource( "6_4fm0u" )
+
+[node name="DelayTimer" type="Timer" parent="WaveSpawner"]
+process_callback = 0
+one_shot = true
+
+[connection signal="visibility_changed" from="UI/PauseScene" to="UI/PauseScene" method="_on_pause_scene_visibility_changed"]
+[connection signal="pressed" from="UI/PauseScene/VBoxContainer/HBoxContainer/Resume" to="UI/PauseScene" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/PauseScene/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/Victory/VBox/Continue" to="UI/Victory" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/GameOver/VBox/Continue" to="UI/GameOver" method="_on_continue_pressed"]
+[connection signal="game_over" from="PlanetCore" to="UI/GameOver" method="_on_planet_core_game_over"]
+[connection signal="timeout" from="PlanetCore/GameOverTimer" to="PlanetCore" method="_on_game_over_timer_timeout"]
+[connection signal="victory" from="WaveSpawner" to="UI/Victory" method="_on_wave_spawner_victory"]
+[connection signal="wave_spawned" from="WaveSpawner" to="UI/WaveAnouncer" method="_on_wave_spawner_wave_spawned"]
+[connection signal="timeout" from="WaveSpawner/DelayTimer" to="WaveSpawner" method="_on_delay_timer_timeout"]

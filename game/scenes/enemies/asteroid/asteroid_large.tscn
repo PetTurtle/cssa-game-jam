@@ -7,10 +7,11 @@
 
 [node name="AsteroidLarge" type="RigidDynamicBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 mass = 25.0
 contacts_reported = 1
 contact_monitor = true
+linear_damp = 0.85
 script = ExtResource( "1_gtsal" )
 sub_divs_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/enemies/asteroid/asteroid_med.tscn"
 

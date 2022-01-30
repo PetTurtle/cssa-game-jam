@@ -13,7 +13,7 @@ _data = [Vector2(0, 0.272727), 0.0, 1.92727, 0, 0, Vector2(1, 2.83636), 0.0, 0.0
 
 [node name="BulletRed" type="Area2D"]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 2
 script = ExtResource( "1_5ggg1" )
 timeout_time = 4.0
 destruction_polygon_path = NodePath("Polygon2D")

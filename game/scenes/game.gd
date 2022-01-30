@@ -1,7 +1,10 @@
 class_name Game
 extends Node2D
 
-@onready var player: Player = $Player
+
+
+@onready var planet = $Planet
+@onready var player = $Player
 @onready var gravity: Position2D = $GravityPoint
 
 var boid_fields := {}
@@ -23,6 +26,7 @@ func get_boid_fields() -> Array:
 	return boid_fields.keys()
 
 
-func game_over():
-	pass
-
+func _on_exit_pressed():
+	Engine.time_scale = 1
+	get_tree().paused = false
+	get_tree().change_scene("res://scenes/Menu.tscn")

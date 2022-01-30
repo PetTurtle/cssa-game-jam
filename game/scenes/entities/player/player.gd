@@ -19,14 +19,17 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var velocity := Vector2.ZERO
 
+var can_fire := true
 var jumped := false
 var coyote_time := false
 
+
 func _input(event):
-	if event.is_action_pressed("fire_1"):
+	if event.is_action_pressed("fire_1") and can_fire:
 		weapon.set_fire(true)
 	elif event.is_action_released("fire_1"):
 		weapon.set_fire(false)
+
 
 func _physics_process(delta: float):
 	arm.look_at(get_global_mouse_position())
@@ -81,3 +84,14 @@ func is_grounded() -> bool:
 
 func _on_coyote_timer_timeout():
 	coyote_time = false
+
+
+func _on_fire_collison_check_body_entered(body):
+	can_fire = false
+	weapon.set_fire(false)
+
+
+func _on_fire_collison_check_body_exited(body):
+	can_fire = true
+	if Input.is_action_pressed("fire_1"):
+		weapon.set_fire(true)
