@@ -6,9 +6,8 @@
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( "1_5tpf4" )
-rof = 1.0
+rof = 2.0
 recoil_anim = true
-ammo = 10
 use_ammo = true
 bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/rocket_yellow.tscn"
 fire_points_path = NodePath("Node2D")

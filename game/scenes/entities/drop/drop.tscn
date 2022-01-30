@@ -8,7 +8,7 @@
 size = Vector2(10, 6)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1x87"]
-radius = 12.0
+radius = 5.09902
 
 [node name="Drop" type="RigidDynamicBody2D"]
 collision_layer = 0

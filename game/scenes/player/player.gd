@@ -35,9 +35,10 @@ func _input(event):
 
 func _physics_process(delta: float):
 	arm.look_at(get_global_mouse_position())
-	if arm.rotation > -PI/2:
+	var arm_local := to_local(weapon.global_position)
+	if arm_local.x > 0:
 		arm.scale.y = 1
-	else:
+	elif arm_local.x < 0:
 		arm.scale.y = -1
 	
 	var grounded := is_grounded()
