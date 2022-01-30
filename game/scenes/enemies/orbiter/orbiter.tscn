@@ -18,6 +18,8 @@ script = ExtResource( "1_j3f8t" )
 
 [node name="BoidOrbiter" type="Node" parent="."]
 script = ExtResource( "2_v8p3p" )
+orbit_distance_min = 160
+orbit_distance_max = 170
 
 [node name="BoidField" type="Node" parent="."]
 script = ExtResource( "2_gppke" )
@@ -36,7 +38,7 @@ shape = SubResource( "CircleShape2D_vnkx8" )
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource( "5_hntbp" )
 rof = 0.5
-bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_red.tscn"
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_purple.tscn"
 fire_points_path = NodePath("../Firepoints")
 
 [node name="Firepoints" type="Node2D" parent="."]

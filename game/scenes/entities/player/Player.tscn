@@ -23,14 +23,14 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [ExtResource( "9_t2rug" )],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
 "frames": [ExtResource( "5_4mj04" ), ExtResource( "6_8thf6" ), ExtResource( "7_8b5ca" ), ExtResource( "8_0vfgn" )],
 "loop": true,
 "name": &"run",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "9_t2rug" )],
+"loop": true,
+"name": &"jump",
 "speed": 5.0
 }]
 
@@ -49,7 +49,6 @@ script = ExtResource( "1_me4tv" )
 position = Vector2(0, -1)
 frames = SubResource( "SpriteFrames_j6u2j" )
 animation = &"idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -86,6 +85,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder/Arm/FireCollisonCheck"]
 position = Vector2(5, 0)
 shape = SubResource( "RectangleShape2D_2sv2e" )
+disabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 process_callback = 0

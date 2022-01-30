@@ -31,11 +31,23 @@ var waves = [
 		"attacks": [{"delay": 10,"enemies": []},]
 	},
 	{
-		"name": "What a nice planet! Hopefully no one will invaid it!\n Move with [WASD]",
+		"name": "CORP wants me to defend this plant.\nMove with [WASD]",
 		"attacks": [{"delay": 10,"enemies": []},]
 	},
 	{
-		"name": "What is that in the distance? Could it be?",
+		"name": "It is usually quite, hopefully nothing bad will happen",
+		"attacks": [{"delay": 10,"enemies": []},]
+	},
+	{
+		"name": "I can't wait to retire tomorrow!",
+		"attacks": [{"delay": 10,"enemies": []},]
+	},
+	{
+		"name": "What is that in the distance?",
+		"attacks": [{"delay": 10,"enemies": []},]
+	},
+	{
+		"name": "Oh no!!!",
 		"attacks": [{"delay": 10,"enemies": []},]
 	},
 	{
@@ -43,23 +55,135 @@ var waves = [
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_MEDIUM]	
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
 			},
 		]
 	},
 	{
-		"name": "Meteor Shower Incoming!",
+		"name": "That was not it!!!\nThere is another wave!",
 		"attacks": [
 			{
 				"delay": 10,
-				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_MEDIUM]	
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_MEDIUM]	
+			},
+			{
+				"delay": 20,
+				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
 			},
 		]
+	},
+	{
+		"name": "There is a big one coming!",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [ASTEROID_LARGE]	
+			},
+			{
+				"delay": 20,
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL]	
+			},
+		]
+	},
+	{
+		"name": "Where are these things coming from?",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [ASTEROID_MEDIUM, ASTEROID_MEDIUM]	
+			},
+			{
+				"delay": 20,
+				"enemies": [ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+			},
+		]
+	},
+	{
+		"name": "Is That... An ALIEN?",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [ORBITER]	
+			},
+			{
+				"delay": 15,
+				"enemies": [ORBITER, ASTEROID_SMALL, ASTEROID_SMALL, ASTEROID_SMALL]	
+			},
+		]
+	},
+	{
+		"name": "Just my luck...",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [ORBITER, ORBITER, ORBITER, ORBITER]	
+			},
+		]
+	},
+	{
+		"name": "They are sending a fighter squadren!",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
+			},
+						{
+				"delay": 20,
+				"enemies": [FIGHTER, FIGHTER, FIGHTER]	
+			},
+		]
+	},
+	{
+		"name": "Another One!",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [FIGHTER, FIGHTER, ASTEROID_MEDIUM]	
+			},
+			{
+				"delay": 25,
+				"enemies": [ORBITER, ORBITER, FIGHTER, FIGHTER]	
+			},
+		]
+	},
+	{
+		"name": "That ship has a BIG gun!",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [BATTLESHIP, BATTLESHIP]	
+			},
+			{
+				"delay": 10,
+				"enemies": [BATTLESHIP, BATTLESHIP, BATTLESHIP, BATTLESHIP]	
+			},
+			{
+				"delay": 25,
+				"enemies": [ORBITER, ORBITER, FIGHTER, FIGHTER]	
+			},
+		]
+	},
+	{
+		"name": "THE MOTHER SHIP IS HERE!!!",
+		"attacks": [
+			{
+				"delay": 10,
+				"enemies": [BOSS]	
+			},
+		]
+	},
+	{
+		"name": "It's finally over!",
+		"attacks": [{"delay": 10,"enemies": []},]
+	},
+	{
+		"name": "CORP will kill me...",
+		"attacks": [{"delay": 10,"enemies": []},]
 	},
 ]
 
 var wave
-var wave_id := 3
+var wave_id := 0
 
 var attack
 var attack_id := 0
@@ -78,16 +202,12 @@ func _ready():
 
 func enemy_died():
 	enemy_count -= 1
-	if enemy_count == 0:
-		_next_attack()
-		if attack:
+	if enemy_count == 0 and attack == null:
+		_next_wave()
+		if wave:
 			delay_timer.start(attack["delay"])
 		else:
-			_next_wave()
-			if wave:
-				delay_timer.start(attack["delay"])
-			else:
-				_victory()
+			_victory()
 
 
 func _next_wave():
@@ -124,16 +244,15 @@ func _on_delay_timer_timeout():
 	for enemy_id in attack["enemies"]:
 		_spawn_enemy(enemies[enemy_id])
 	
-	if enemy_count == 0:
-		_next_attack()
-		if attack:
+	_next_attack()
+	if attack:
+		delay_timer.start(attack["delay"])
+	elif enemy_count == 0:
+		_next_wave()
+		if wave:
 			delay_timer.start(attack["delay"])
 		else:
-			_next_wave()
-			if wave:
-				delay_timer.start(attack["delay"])
-			else:
-				_victory()
+			_victory()
 
 
 func _victory():

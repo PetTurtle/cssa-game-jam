@@ -20,6 +20,9 @@ script = ExtResource( "1_3alcv" )
 
 [node name="Boid" type="Node" parent="."]
 script = ExtResource( "2_c6emw" )
+speed = 30
+orbit_distance_min = 235
+orbit_distance_max = 290
 
 [node name="BoidField" type="Node" parent="."]
 script = ExtResource( "2_wgqla" )

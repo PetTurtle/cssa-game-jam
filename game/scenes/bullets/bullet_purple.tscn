@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0po2iejaq2h8"]
+
+[ext_resource type="Script" path="res://scenes/bullets/bullet.gd" id="1_rps2y"]
+[ext_resource type="Texture2D" uid="uid://bij3xpwv0f0mg" path="res://scenes/bullets/white.png" id="2_jlxrk"]
+[ext_resource type="Script" path="res://components/trail.gd" id="3_ujyhc"]
+
+[sub_resource type="Curve" id="Curve_lh25m"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 2.56364, 0, 0, Vector2(1, 2.61818), 2.61025, 0.0, 0, 0]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wybli"]
+radius = 2.0
+
+[node name="Bullet" type="Area2D"]
+modulate = Color(0.247059, 0.247059, 0.454902, 1)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource( "1_rps2y" )
+speed = 250.0
+destruction_polygon_path = NodePath("Polygon2D")
+
+[node name="White" type="Sprite2D" parent="."]
+texture = ExtResource( "2_jlxrk" )
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+width = 1.0
+width_curve = SubResource( "Curve_lh25m" )
+default_color = Color(0.247059, 0.247059, 0.454902, 1)
+script = ExtResource( "3_ujyhc" )
+length = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_wybli" )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.356863, 0.431373, 0.882353, 1)
+polygon = PackedVector2Array(0, -3, 4, -2, 7, 0, 4, 2, 0, 3, -5, 0)

@@ -20,4 +20,4 @@ func _on_damageable_damaged():
 
 
 func _on_damageable_destroyed():
-	pass # Replace with function body.
+	queue_free()
