@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn0sg4aysd5om"]
+[gd_scene load_steps=4 format=3 uid="uid://bn0sg4aysd5om"]
 
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="1_afmrt"]
 [ext_resource type="Texture2D" uid="uid://b1e0ui7pbkc1s" path="res://scenes/weapons/sniper/sniper.png" id="2_bxh5y"]
+[ext_resource type="AudioStream" uid="uid://c2pwsvkdvess4" path="res://resources/audio/laserLarge_002.ogg" id="3_2po1l"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( "1_afmrt" )
@@ -13,6 +14,7 @@ ammo = 10
 use_ammo = true
 bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/sniper_yellow.tscn"
 fire_points_path = NodePath("Node2D")
+fire_sound_path = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(3, -1)
@@ -22,3 +24,7 @@ texture = ExtResource( "2_bxh5y" )
 
 [node name="Position2D" type="Position2D" parent="Node2D"]
 position = Vector2(11, -1.5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( "3_2po1l" )
+pitch_scale = 0.69

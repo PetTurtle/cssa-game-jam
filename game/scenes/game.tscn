@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bgrbdvij85l7m"]
+[gd_scene load_steps=40 format=3 uid="uid://bgrbdvij85l7m"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="6_4fm0u"]
 [ext_resource type="Script" path="res://scripts/game_0ver.gd" id="6_u6j4e"]
 [ext_resource type="PackedScene" uid="uid://bru313k3uda08" path="res://scenes/entities/drop/drop.tscn" id="15_qlk0u"]
+[ext_resource type="AudioStream" uid="uid://blcjh4hf6e4yy" path="res://resources/audio/start-level.wav" id="16_hr3he"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="17_05f2y"]
 
 [sub_resource type="Curve" id="Curve_5et1d"]
 max_value = 2.0
@@ -166,6 +168,7 @@ anchor_bottom = 1.0
 offset_top = 25.0
 offset_bottom = 117.0
 theme_override_fonts/font = ExtResource( "4_v0jqx" )
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 __meta__ = {
@@ -443,6 +446,12 @@ position = Vector2(234, 120)
 [node name="Drop8" parent="." instance=ExtResource( "15_qlk0u" )]
 position = Vector2(231, 56)
 
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( "16_hr3he" )
+volume_db = -2.0
+autoplay = true
+script = ExtResource( "17_05f2y" )
+
 [connection signal="visibility_changed" from="UI/PauseScene" to="UI/PauseScene" method="_on_pause_scene_visibility_changed"]
 [connection signal="pressed" from="UI/PauseScene/VBoxContainer/HBoxContainer/Resume" to="UI/PauseScene" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/PauseScene/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
@@ -453,3 +462,4 @@ position = Vector2(231, 56)
 [connection signal="victory" from="WaveSpawner" to="UI/Victory" method="_on_wave_spawner_victory"]
 [connection signal="wave_spawned" from="WaveSpawner" to="UI/WaveAnouncer" method="_on_wave_spawner_wave_spawned"]
 [connection signal="timeout" from="WaveSpawner/DelayTimer" to="WaveSpawner" method="_on_delay_timer_timeout"]
+[connection signal="finished" from="Music" to="Music" method="_on_audio_stream_player_2d_finished"]

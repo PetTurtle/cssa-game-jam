@@ -27,7 +27,7 @@ animations = [{
 "frames": [ExtResource( "5_8yo3k" ), ExtResource( "6_dhag8" ), ExtResource( "7_1xdo2" ), ExtResource( "8_yvqlw" )],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 7.5
 }, {
 "frames": [ExtResource( "9_srogg" )],
 "loop": true,
@@ -51,6 +51,7 @@ friction = 0.075
 position = Vector2(0, -1)
 frames = SubResource( "SpriteFrames_j6u2j" )
 animation = &"idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,9 +75,10 @@ target_position = Vector2(0, 10)
 collision_mask = 2
 
 [node name="Shoulder" type="Node2D" parent="."]
+position = Vector2(0, 2)
 
 [node name="Arm" type="Node2D" parent="Shoulder"]
-position = Vector2(7, -1)
+position = Vector2(9, 0)
 __meta__ = {
 "_edit_group_": true
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1a7ywuktewny"]
+[gd_scene load_steps=12 format=3 uid="uid://c1a7ywuktewny"]
 
 [ext_resource type="Texture2D" uid="uid://vsij3ghlrid4" path="res://scenes/enemies/battleship/battleship.png" id="1_sje7c"]
 [ext_resource type="Script" path="res://scenes/enemies/battleship/battleship.gd" id="1_v3si5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c33ns6cse7ao8" path="res://scenes/enemies/battleship/turret.png" id="6_8r43y"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="7_od725"]
 [ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="8_5l5fr"]
+[ext_resource type="AudioStream" uid="uid://xuu4tg35hxsy" path="res://resources/audio/laserLarge_000.ogg" id="9_3iatm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjphp"]
 size = Vector2(18, 6)
@@ -65,6 +66,11 @@ script = ExtResource( "7_od725" )
 rof = 2.0
 bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_red.tscn"
 fire_points_path = NodePath("../FirePoints")
+fire_sound_path = NodePath("../AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Turret"]
+stream = ExtResource( "9_3iatm" )
+pitch_scale = 1.2
 
 [node name="Marker" parent="." instance=ExtResource( "8_5l5fr" )]
 

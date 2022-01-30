@@ -12,5 +12,5 @@ dest_files=["res://.godot/imported/laserSmall_002.ogg-a0f934de4cffcc74870c95922f
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
