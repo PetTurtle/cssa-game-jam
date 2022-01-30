@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbmocbvyq7onb"]
+
+[ext_resource type="Script" path="res://scenes/bullets/bullet.gd" id="1_eya0n"]
+[ext_resource type="Texture2D" uid="uid://c482c2qvrxsvl" path="res://scenes/bullets/yellow_small.png" id="2_0hik4"]
+[ext_resource type="Script" path="res://components/trail.gd" id="3_07w5o"]
+
+[sub_resource type="Curve" id="Curve_rj44w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.872727), 1.24675, 0.0, 0, 0]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohrox"]
+radius = 1.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( "1_eya0n" )
+speed = 300.0
+destruction_polygon_path = NodePath("Polygon2D")
+
+[node name="YellowSmall" type="Sprite2D" parent="."]
+texture = ExtResource( "2_0hik4" )
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+width = 1.0
+width_curve = SubResource( "Curve_rj44w" )
+default_color = Color(0.984314, 0.94902, 0.211765, 1)
+script = ExtResource( "3_07w5o" )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-1, -2, 0, -5, 1, -2, 3, -2, 2, 0, 3, 2, 1, 3, 0, 2, -1, 3, -1, 1, -3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_ohrox" )

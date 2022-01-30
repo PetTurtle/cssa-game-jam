@@ -409,6 +409,9 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 15.0
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
+
 [node name="WaveSpawner" type="Node" parent="."]
 script = ExtResource( "6_4fm0u" )
 

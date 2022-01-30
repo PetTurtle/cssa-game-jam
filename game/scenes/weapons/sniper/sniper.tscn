@@ -6,10 +6,12 @@
 [node name="Weapon" type="Node2D"]
 script = ExtResource( "1_afmrt" )
 rof = 1.0
+recoil = 0.1
+spread = 0.5
 recoil_anim = true
 ammo = 10
 use_ammo = true
-bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_yellow.tscn"
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/sniper_yellow.tscn"
 fire_points_path = NodePath("Node2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]

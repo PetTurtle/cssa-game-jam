@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://chsuyajn2icyp"
+path="res://.godot/imported/thruster.ogg-2e13466411194c81f6cb3c90535d5ce1.oggvorbisstr"
+
+[deps]
+
+source_file="res://resources/audio/thruster.ogg"
+dest_files=["res://.godot/imported/thruster.ogg-2e13466411194c81f6cb3c90535d5ce1.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -5,7 +5,7 @@
 
 [node name="SMG" type="Node2D"]
 script = ExtResource( "1_l2vpq" )
-rof = 10.0
+rof = 15.0
 spread = 0.5
 recoil_anim = true
 use_ammo = true

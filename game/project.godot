@@ -29,6 +29,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/bullets/bullet.gd"
 }, {
+"base": "Area2D",
+"class": &"BulletTracking",
+"language": &"GDScript",
+"path": "res://scenes/bullets/bullet_tracking.gd"
+}, {
 "base": "Node",
 "class": &"Damageable",
 "language": &"GDScript",
@@ -84,6 +89,7 @@ _global_script_class_icons={
 "BoidField": "",
 "BoidOrbiter": "",
 "Bullet": "",
+"BulletTracking": "",
 "Damageable": "",
 "Destructible": "",
 "DropOnDeath": "",

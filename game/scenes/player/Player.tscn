@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dflociufxx6o6"]
+[gd_scene load_steps=15 format=3 uid="uid://dflociufxx6o6"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_phqo8"]
 [ext_resource type="Texture2D" uid="uid://cjey8tu6i47uj" path="res://scenes/player/assets/player7.png" id="2_4w5m0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cul7gu3wrywo7" path="res://scenes/player/assets/player6.png" id="8_yvqlw"]
 [ext_resource type="Texture2D" uid="uid://clcot8qmcpk1r" path="res://scenes/player/assets/player8.png" id="9_srogg"]
 [ext_resource type="PackedScene" uid="uid://cjt725we6x1j5" path="res://scenes/weapons/pistol/pistol.tscn" id="10_nxtua"]
+[ext_resource type="AudioStream" uid="uid://barymh6pmyolr" path="res://resources/audio/footstep.ogg" id="11_g5vuq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j6u2j"]
 animations = [{
@@ -50,7 +51,6 @@ friction = 0.075
 position = Vector2(0, -1)
 frames = SubResource( "SpriteFrames_j6u2j" )
 animation = &"idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -96,6 +96,9 @@ disabled = true
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( "11_g5vuq" )
 
 [connection signal="body_entered" from="Shoulder/Arm/FireCollisonCheck" to="." method="_on_fire_collison_check_body_entered"]
 [connection signal="body_exited" from="Shoulder/Arm/FireCollisonCheck" to="." method="_on_fire_collison_check_body_exited"]

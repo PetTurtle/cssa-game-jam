@@ -1,0 +1,16 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOGGVorbis"
+uid="uid://xuu4tg35hxsy"
+path="res://.godot/imported/laserLarge_000.ogg-64d8e29cbe5db82fba9c5335b7f7af84.oggvorbisstr"
+
+[deps]
+
+source_file="res://resources/audio/laserLarge_000.ogg"
+dest_files=["res://.godot/imported/laserLarge_000.ogg-64d8e29cbe5db82fba9c5335b7f7af84.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0

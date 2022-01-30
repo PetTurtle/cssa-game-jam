@@ -12,6 +12,7 @@ signal out_of_ammo()
 @export var use_ammo := false
 @export_global_file(PackedScene) var bullet_path: String
 @export_node_path(Node2D) var fire_points_path: NodePath
+@export_node_path(AudioStreamPlayer2D) var fire_sound_path: NodePath
 
 var fire := false
 var fire_points := []
@@ -22,6 +23,7 @@ var curr_spread: float = 0.0
 var recoil_timer: Timer
 
 @onready var bullet_scene: PackedScene = load(bullet_path)
+@onready var fire_sound: AudioStreamPlayer2D = get_node(fire_sound_path)
 
 
 func _ready():
@@ -84,3 +86,4 @@ func _fire():
 	if use_ammo and ammo == 0:
 		emit_signal("out_of_ammo")
 	recoil_timer.start()
+	fire_sound.play()

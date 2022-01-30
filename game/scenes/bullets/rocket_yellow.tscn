@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://oe6dpwxg54ej"]
+
+[ext_resource type="Script" path="res://scenes/bullets/bullet_tracking.gd" id="1_b36e2"]
+[ext_resource type="Texture2D" uid="uid://ch35g7rcsa2rb" path="res://scenes/bullets/yellow_rocketl.png" id="2_co53a"]
+[ext_resource type="Script" path="res://components/trail.gd" id="3_o2usb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_raoj5"]
+radius = 3.0
+
+[sub_resource type="Curve" id="Curve_2b67j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.936364), 0.0, 0.0, 0, 0]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource( "1_b36e2" )
+speed = 80.0
+damage = 8
+track_speed = 50.0
+max_speed = 200.0
+timeout_time = 5.0
+destruction_polygon_path = NodePath("Polygon2D")
+
+[node name="YellowRocketl" type="Sprite2D" parent="."]
+texture = ExtResource( "2_co53a" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_raoj5" )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(2, -6, 3, -3, 7, -2, 4, 0, 6, 4, 2, 3, -1, 6, -1, 3, -5, 3, -3, 1, -5, -1, -3, -3, -2, -5, -1, -3)
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+width = 1.5
+width_curve = SubResource( "Curve_2b67j" )
+script = ExtResource( "3_o2usb" )
+length = 15
+
+[node name="TrackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Trail2" type="CPUParticles2D" parent="."]
+position = Vector2(-4, 0)
+amount = 15
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2(1, 1)
+gravity = Vector2(0, 0)
+
+[connection signal="timeout" from="TrackTimer" to="." method="_on_track_timer_timeout"]

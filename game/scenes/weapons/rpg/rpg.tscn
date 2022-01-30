@@ -8,7 +8,7 @@ script = ExtResource( "1_5tpf4" )
 recoil_anim = true
 ammo = 10
 use_ammo = true
-bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/bullet_yellow.tscn"
+bullet_path = "/home/illya/Documents/repos/cssa-game-jam/game/scenes/bullets/rocket_yellow.tscn"
 fire_points_path = NodePath("Node2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
