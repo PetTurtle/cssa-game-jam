@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvicxdvdftbg4"]
+[gd_scene load_steps=9 format=3 uid="uid://cvicxdvdftbg4"]
 
 [ext_resource type="Texture2D" uid="uid://chf8ytfy35mem" path="res://scenes/enemies/boss/boss.png" id="1_0t2g8"]
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="1_mabdp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_4bjh7"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="4_uqnul"]
 [ext_resource type="PackedScene" uid="uid://ddfhuwbqrqa2w" path="res://scenes/enemies/boss/Turret.tscn" id="6_se47r"]
+[ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="7_n1iuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_daisy"]
 size = Vector2(51, 18)
@@ -44,6 +45,8 @@ position = Vector2(-1, 0)
 
 [node name="Turret2" parent="." instance=ExtResource( "6_se47r" )]
 position = Vector2(20, 0)
+
+[node name="Marker" parent="." instance=ExtResource( "7_n1iuc" )]
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
 [connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

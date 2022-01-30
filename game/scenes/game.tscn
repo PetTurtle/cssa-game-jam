@@ -1,17 +1,41 @@
-[gd_scene load_steps=32 format=3 uid="uid://doeuxfpxre76s"]
+[gd_scene load_steps=37 format=3 uid="uid://bgrbdvij85l7m"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_3wurr"]
 [ext_resource type="Texture2D" uid="uid://dn5x8dmaf6frc" path="res://earth.png" id="1_axvxh"]
 [ext_resource type="Script" path="res://scenes/WaveAnouncer.gd" id="2_5dvf4"]
 [ext_resource type="Script" path="res://components/Destructible.gd" id="2_d1y56"]
 [ext_resource type="Texture2D" uid="uid://d2hcqecylswxe" path="res://sky.png" id="2_dgc41"]
+[ext_resource type="Texture2D" uid="uid://duh1l54702g3t" path="res://resources/particles/star_01.png" id="2_hjxbl"]
 [ext_resource type="Script" path="res://scripts/planet_core.gd" id="2_xnqvc"]
-[ext_resource type="PackedScene" uid="uid://c0r654ui6a0i6" path="res://scenes/entities/player/Player.tscn" id="3_dx44n"]
+[ext_resource type="PackedScene" uid="uid://fk1ffm5cfbt5" path="res://scenes/player/Player.tscn" id="3_dx44n"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_k7g8r"]
+[ext_resource type="Font" uid="uid://dnccwbywyppn1" path="res://resources/fonts/font_2.tres" id="4_v0jqx"]
 [ext_resource type="Texture2D" uid="uid://t7oca17oexa3" path="res://earth-background.png" id="5_6w83c"]
 [ext_resource type="Script" path="res://scripts/victory.gd" id="5_xqg16"]
 [ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="6_4fm0u"]
 [ext_resource type="Script" path="res://scripts/game_0ver.gd" id="6_u6j4e"]
+
+[sub_resource type="Curve" id="Curve_5et1d"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.493333, 2), -0.136364, -0.136364, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_juxdp"]
+curve = SubResource( "Curve_5et1d" )
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_76v5r"]
+emission_shape = 2
+emission_box_extents = Vector3(360, 360, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource( "CurveTexture_juxdp" )
+color = Color(1, 1, 1, 0.152941)
+attractor_interaction_enabled = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_af4d5"]
 radius = 27.0
@@ -35,8 +59,8 @@ emission_shape = 1
 emission_sphere_radius = 30.0
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.05
-orbit_velocity_max = 0.1
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.01
 scale_curve = SubResource( "CurveTexture_iug03" )
 color_ramp = SubResource( "GradientTexture1D_arvc7" )
 collision_enabled = true
@@ -108,6 +132,19 @@ color_ramp = SubResource( "GradientTexture1D_rvt42" )
 [node name="Game" type="Node2D"]
 script = ExtResource( "1_3wurr" )
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Stars" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(132, 130)
+amount = 100
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource( "ParticlesMaterial_76v5r" )
+texture = ExtResource( "2_hjxbl" )
+
 [node name="Sky" type="Sprite2D" parent="."]
 position = Vector2(128, 128)
 scale = Vector2(0.5, 0.5)
@@ -125,10 +162,11 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/WaveAnouncer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 25.0
+offset_bottom = 117.0
+theme_override_fonts/font = ExtResource( "4_v0jqx" )
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 0
-percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -166,26 +204,27 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="UI/PauseScene/VBoxContainer"]
 offset_right = 182.0
-offset_bottom = 26.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource( "4_v0jqx" )
 text = "Paused!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseScene/VBoxContainer"]
-offset_top = 30.0
+offset_top = 27.0
 offset_right = 182.0
-offset_bottom = 61.0
+offset_bottom = 55.0
 
 [node name="Resume" type="Button" parent="UI/PauseScene/VBoxContainer/HBoxContainer"]
 offset_right = 89.0
-offset_bottom = 31.0
+offset_bottom = 28.0
 size_flags_horizontal = 3
 text = "Resume"
 
 [node name="Exit" type="Button" parent="UI/PauseScene/VBoxContainer/HBoxContainer"]
 offset_left = 93.0
 offset_right = 182.0
-offset_bottom = 31.0
+offset_bottom = 28.0
 size_flags_horizontal = 3
 text = "Exit"
 
@@ -221,16 +260,17 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="UI/Victory/VBox"]
-offset_right = 77.0
-offset_bottom = 26.0
+offset_right = 80.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource( "4_v0jqx" )
 text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Continue" type="Button" parent="UI/Victory/VBox"]
-offset_top = 30.0
-offset_right = 77.0
-offset_bottom = 61.0
+offset_top = 27.0
+offset_right = 80.0
+offset_bottom = 55.0
 text = "Continue"
 
 [node name="GameOver" type="Control" parent="UI"]
@@ -265,16 +305,17 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="UI/GameOver/VBox"]
-offset_right = 91.0
-offset_bottom = 26.0
+offset_right = 92.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource( "4_v0jqx" )
 text = "Game Over!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Continue" type="Button" parent="UI/GameOver/VBox"]
-offset_top = 30.0
-offset_right = 91.0
-offset_bottom = 61.0
+offset_top = 27.0
+offset_right = 92.0
+offset_bottom = 55.0
 text = "Restart"
 
 [node name="GravityPoint" type="Position2D" parent="."]
@@ -301,13 +342,12 @@ texture = ExtResource( "5_6w83c" )
 amount = 500
 lifetime = 5.0
 preprocess = 5.0
-trail_enabled = true
-trail_length_secs = 0.5
+trail_length_secs = 1.0
 process_material = SubResource( "ParticlesMaterial_03lwi" )
 
 [node name="ExplodeShape" type="Polygon2D" parent="PlanetCore"]
 visible = false
-polygon = PackedVector2Array(-107, -4, -38, 6, -73, 22, -47, 22, -63, 45, -32, 40, -63, 94, -5, 53, 39, 97, 27, 27, 92, 51, 71.0842, 30.8589, 101, 16, 52.2818, 12.7529, 38, -1, 74, -33, 77, -50, 48, -30, 31, -33, 28.4305, -56.7859, 30, -76, 34, -98, 3, -45, -13, -79, -29.1951, -68.1252, -52, -94, -49, -68, -65, -60, -34, -31, -62, -37, -93, -53, -60, -17, -77, -9)
+polygon = PackedVector2Array(-107, -4, -38, 6, -47, 22, -63, 45, -32, 40, -5, 53, 39, 97, 27, 27, 92, 51, 38, -1, 74, -33, 31, -33, 28.4305, -56.7859, 3, -45, -29.1951, -68.1252, -34, -31, -62, -37, -60, -17)
 
 [node name="GameOverTimer" type="Timer" parent="PlanetCore"]
 one_shot = true

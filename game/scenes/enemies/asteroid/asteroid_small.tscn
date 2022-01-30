@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcjcwvuotl6qt"]
+[gd_scene load_steps=6 format=3 uid="uid://dcjcwvuotl6qt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/asteroid/asteroid.gd" id="1_3pwi0"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="1_croh8"]
 [ext_resource type="Script" path="res://components/boid_field.gd" id="2_2mucs"]
 [ext_resource type="Texture2D" uid="uid://dkl0ysg6lanfj" path="res://scenes/enemies/asteroid/asteroid_small.png" id="2_lpexh"]
+[ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="5_t2bsm"]
 
 [node name="AsteroidSmall" type="RigidDynamicBody2D"]
 collision_layer = 4
@@ -27,6 +28,8 @@ texture = ExtResource( "2_lpexh" )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-4, -2, -4, 0, -1, 4, 2, 4, 4, 1, 4, -2, 2, -4, -2, -4)
+
+[node name="Marker" parent="." instance=ExtResource( "5_t2bsm" )]
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
 [connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

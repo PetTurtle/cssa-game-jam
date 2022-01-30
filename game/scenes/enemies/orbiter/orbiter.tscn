@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://de8q5rqbyow44"]
+[gd_scene load_steps=9 format=3 uid="uid://de8q5rqbyow44"]
 
 [ext_resource type="Texture2D" uid="uid://bqmcl4cshimce" path="res://scenes/enemies/orbiter/orbiter.png" id="1_6yaho"]
 [ext_resource type="Script" path="res://scenes/enemies/orbiter/orbiter.gd" id="1_j3f8t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://components/boid_orbiter.gd" id="2_v8p3p"]
 [ext_resource type="Script" path="res://components/damageable.gd" id="4_1amn6"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="5_hntbp"]
+[ext_resource type="PackedScene" uid="uid://cmxb72tb75myl" path="res://scenes/entities/marker/marker.tscn" id="7_oq83n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnkx8"]
 radius = 5.09902
@@ -49,6 +50,8 @@ position = Vector2(10, 0)
 [node name="FireRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(105, 0)
 collision_mask = 3
+
+[node name="Marker" parent="." instance=ExtResource( "7_oq83n" )]
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
 [connection signal="destroyed" from="Damageable" to="." method="_on_damageable_destroyed"]

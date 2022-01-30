@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmxb72tb75myl"]
+
+[ext_resource type="Texture2D" uid="uid://coxnwhwf1rlof" path="res://resources/icons/icon_exclamationSmall.png" id="1_77gcx"]
+[ext_resource type="Script" path="res://scenes/entities/marker/marker.gd" id="1_fmp1n"]
+[ext_resource type="Texture2D" uid="uid://chucd8obs7kpr" path="res://resources/icons/ship_I.png" id="1_w84dp"]
+
+[node name="Marker" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource( "1_fmp1n" )
+
+[node name="Point" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Point"]
+modulate = Color(0.964706, 1, 0.956863, 1)
+position = Vector2(-23, 0)
+rotation = 1.5708
+scale = Vector2(0.9375, 1)
+texture = ExtResource( "1_w84dp" )
+
+[node name="Icon" type="Sprite2D" parent="Point/Sprite"]
+modulate = Color(1, 0.207843, 0.109804, 1)
+position = Vector2(1.48351e-06, 10)
+rotation = -1.5708
+scale = Vector2(1.06667, 1)
+texture = ExtResource( "1_77gcx" )

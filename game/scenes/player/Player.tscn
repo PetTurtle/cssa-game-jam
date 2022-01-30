@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://fk1ffm5cfbt5"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_phqo8"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player7.png" id="2_4w5m0"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player1.png" id="3_nv8bb"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player2.png" id="4_000x6"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player3.png" id="5_8yo3k"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player4.png" id="6_dhag8"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player5.png" id="7_1xdo2"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player6.png" id="8_yvqlw"]
+[ext_resource type="Texture2D" path="res://scenes/player/assets/player8.png" id="9_srogg"]
+[ext_resource type="PackedScene" uid="uid://cjt725we6x1j5" path="res://scenes/weapons/pistol.tscn" id="10_nxtua"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6u2j"]
+animations = [{
+"frames": [ExtResource( "2_4w5m0" )],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "3_nv8bb" ), ExtResource( "4_000x6" )],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "5_8yo3k" ), ExtResource( "6_dhag8" ), ExtResource( "7_1xdo2" ), ExtResource( "8_yvqlw" )],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "9_srogg" )],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es2dg"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sv2e"]
+size = Vector2(10, 2)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource( "1_phqo8" )
+friction = 0.075
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+frames = SubResource( "SpriteFrames_j6u2j" )
+animation = &"idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource( "CapsuleShape2D_es2dg" )
+
+[node name="GroundCast" type="Node2D" parent="."]
+
+[node name="GroundCastLeft" type="RayCast2D" parent="GroundCast"]
+position = Vector2(-4, 0)
+target_position = Vector2(0, 9)
+collision_mask = 2
+
+[node name="GroundCastRight" type="RayCast2D" parent="GroundCast"]
+position = Vector2(4, 0)
+target_position = Vector2(0, 9)
+collision_mask = 2
+
+[node name="GroundCastCenter" type="RayCast2D" parent="GroundCast"]
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="Shoulder" type="Node2D" parent="."]
+
+[node name="Arm" type="Node2D" parent="Shoulder"]
+position = Vector2(7, 0)
+
+[node name="Pistol" parent="Shoulder/Arm" instance=ExtResource( "10_nxtua" )]
+
+[node name="FireCollisonCheck" type="Area2D" parent="Shoulder/Arm"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shoulder/Arm/FireCollisonCheck"]
+position = Vector2(5, 0)
+shape = SubResource( "RectangleShape2D_2sv2e" )
+disabled = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Shoulder/Arm/FireCollisonCheck" to="." method="_on_fire_collison_check_body_entered"]
+[connection signal="body_exited" from="Shoulder/Arm/FireCollisonCheck" to="." method="_on_fire_collison_check_body_exited"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

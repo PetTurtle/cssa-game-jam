@@ -47,7 +47,7 @@ _global_script_classes=[{
 "base": "CharacterBody2D",
 "class": &"Player",
 "language": &"GDScript",
-"path": "res://scenes/entities/player/player.gd"
+"path": "res://scenes/player/player.gd"
 }, {
 "base": "Resource",
 "class": &"QuadTree",
@@ -104,6 +104,11 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="res://resources/fonts/default_font.tres"
+fonts/dynamic_fonts/use_oversampling=false
 
 [input]
 

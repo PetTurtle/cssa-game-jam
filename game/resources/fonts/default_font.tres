@@ -1,0 +1,6 @@
+[gd_resource type="Font" load_steps=2 format=3 uid="uid://dnccwbywyppn1"]
+
+[ext_resource type="FontData" uid="uid://cnaincegnhsb5" path="res://resources/fonts/raw/Kenney Mini.ttf" id="1_fx3vr"]
+
+[resource]
+data/0 = ExtResource( "1_fx3vr" )
